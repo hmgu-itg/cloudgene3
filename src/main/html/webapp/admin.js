@@ -24,7 +24,7 @@ import SettingsServerControl from 'components/admin/settings/server/';
 import SettingsMailControl from 'components/admin/settings/mail/';
 import SettingsTemplatesControl from 'components/admin/settings/templates/';
 import SettingsLogsControl from 'components/admin/settings/logs/';
-
+import SettingsCountryControl from 'components/admin/settings/country/';
 
 $(document.links).filter(function () {
   return this.hostname != window.location.hostname;
@@ -94,6 +94,10 @@ var routes = [{
 }, {
   path: 'pages/admin-settings-templates',
   control: SettingsTemplatesControl,
+  guard: adminGuard
+}, {
+  path: 'pages/admin-settings-country',
+  control: SettingsCountryControl
   guard: adminGuard
 }, {
   path: 'pages/admin-logs',
