@@ -59,6 +59,13 @@ public class User {
 
 	private Date acceptedPermission = new Date();
 
+           public void setAccessedByApi(boolean accessedByApi) {
+               this.accessedByApi = accessedByApi;
+       }
+       
+       public boolean isAccessedByApi() {
+               return accessedByApi;
+       }
        public void setAccessedByApi(boolean accessedByApi) {
                this.accessedByApi = accessedByApi;
        }
