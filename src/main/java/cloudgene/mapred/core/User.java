@@ -8,6 +8,8 @@ public class User {
 	public static final String ROLE_SEPARATOR = ",";
 
 	public static final String ROLE_ADMIN = "admin";
+    public static final String ROLE_USER = "user";
+    private boolean accessedByApi = false;
 
 	private String username;
 
@@ -56,6 +58,22 @@ public class User {
 	private Date acceptedCountry = new Date();
 
 	private Date acceptedPermission = new Date();
+
+           public void setAccessedByApi(boolean accessedByApi) {
+               this.accessedByApi = accessedByApi;
+       }
+       
+       public boolean isAccessedByApi() {
+               return accessedByApi;
+       }
+       public void setAccessedByApi(boolean accessedByApi) {
+               this.accessedByApi = accessedByApi;
+       }
+       
+       public boolean isAccessedByApi() {
+               return accessedByApi;
+       }
+
 
 	public void setUsername(String username) {
 		this.username = username;
