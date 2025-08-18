@@ -67,6 +67,22 @@ public class User {
                return accessedByApi;
        }
 
+           public void setAccessedByApi(boolean accessedByApi) {
+               this.accessedByApi = accessedByApi;
+       }
+       
+       public boolean isAccessedByApi() {
+               return accessedByApi;
+       }
+       public void setAccessedByApi(boolean accessedByApi) {
+               this.accessedByApi = accessedByApi;
+       }
+       
+       public boolean isAccessedByApi() {
+               return accessedByApi;
+       }
+
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
