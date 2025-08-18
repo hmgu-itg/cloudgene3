@@ -2,6 +2,7 @@ package cloudgene.mapred.server.services;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,9 @@ import cloudgene.mapred.server.responses.MessageResponse;
 import cloudgene.mapred.util.HashUtil;
 import cloudgene.mapred.util.MailUtil;
 import cloudgene.mapred.util.Page;
+import cloudgene.mapred.core.Country;
+import cloudgene.mapred.database.CountryDao;
+
 import io.micronaut.http.HttpStatus;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
@@ -26,7 +30,7 @@ public class UserService {
 
 	public static final String MESSAGE_USER_NOT_FOUND = "User %s not found.";
 
-	private static final String MESSAGE_USER_PROFILE_DELETE = "User profile successfully delete.";
+	private static final String MESSAGE_USER_PROFILE_DELETE = "User profile successfully deleted.";
 
 	private static final String MESSAGE_DELETE_ERROR = "Error during deleting your user profile.";
 
