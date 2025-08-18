@@ -1,17 +1,19 @@
 package cloudgene.mapred.database.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Date;
 
-import cloudgene.mapred.core.Template;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import cloudgene.mapred.core.User;
 import cloudgene.mapred.database.TemplateDao;
 import cloudgene.mapred.database.UserDao;
 import cloudgene.mapred.util.HashUtil;
+import cloudgene.mapred.util.Template;
 
 public class Fixtures {
 
-	private static final Logger log = LoggerFactory.getLogger(Fixtures.class);
+	private static final Log log = LogFactory.getLog(Fixtures.class);
 
 	public static String USERNAME = "admin";
 
@@ -23,19 +25,30 @@ public class Fixtures {
 		UserDao dao = new UserDao(database);
 		User user = dao.findByUsername(USERNAME);
 		if (user == null) {
+			log.info("Creating Admin user");
 			user = new User();
 			user.setUsername(USERNAME);
 			PASSWORD = HashUtil.hashPassword(PASSWORD);
 			user.setPassword(PASSWORD);
 			user.makeAdmin();
+			user.setFullName("Admin");
+			user.setMail("admin@example.com");
+			user.setInstituteEmail("supervisor@example.com");
+			user.setInstituteName("Institute");
+			user.setInstituteAddress1("Institute Address1");
+			user.setInstituteCity("City");
+			user.setInstitutePostCode("Postcode");
+			user.setInstituteCountry("Germany");
+			user.setAcceptedTandC(new Date());
+			user.setAcceptedCountry(new Date());
 
 			dao.insert(user);
 			log.info("User " + USERNAME + " created.");
-		} else {	
-			
+		} else {
+
 			log.info("User " + USERNAME + " already exists.");
-			
-			if (!user.isAdmin()){
+
+			if (!user.isAdmin()) {
 				user.makeAdmin();
 				dao.update(user);
 				log.info("User " + USERNAME + " has admin rights now.");
