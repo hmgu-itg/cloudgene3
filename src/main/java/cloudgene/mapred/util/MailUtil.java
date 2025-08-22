@@ -1,5 +1,7 @@
 package cloudgene.mapred.util;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Properties;
 
 import jakarta.mail.Message;
@@ -54,11 +56,21 @@ public class MailUtil {
 				}
 			});
 		} else {
-
 			session = Session.getInstance(props);
-
 		}
+		
+		log.debug("Printing props: ");
+		log.debug(props);
 
+		try {
+          // Get the local host InetAddress object
+          InetAddress inetAddress = InetAddress.getLocalHost();
+          String ipAddress = inetAddress.getHostAddress();
+          log.debug("IP Address: " + ipAddress);
+        } catch (UnknownHostException e) {
+          log.debug("Unable to determine IP address.");
+        }
+		
 		try {
 
 			InternetAddress[] addresses = InternetAddress.parse(tos);
@@ -69,8 +81,8 @@ public class MailUtil {
 			message.setSubject(subject);
 			message.setText(text);
 
+			log.debug("Sending E-Mail to " + tos + ".");
 			Transport.send(message);
-
 			log.debug("E-Mail sent to " + tos + ".");
 
 		} catch (MessagingException e) {
