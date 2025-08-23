@@ -27,72 +27,100 @@ $(document.links).filter(function() {
 }).attr('target', '_blank');
 
 var routes = [{
-  path: '',
-  control: DashboardControl,
-  classes: 'fullsize-container'
+    path: '',
+    control: DashboardControl,
+    classes: 'fullsize-container'
 }, {
-  path: 'pages/home',
-  control: DashboardControl,
-  classes: 'fullsize-container'
+    path: 'pages/home',
+    control: DashboardControl,
+    classes: 'fullsize-container'
 }, {
-  path: 'pages/contact',
+    path: 'pages/contact',
+    control: StaticPage,
+    options: {
+	template: 'static/contact.stache'
+    }
+},
+{
+   path: 'pages/legal',
+   control: StaticPage,
+   options: {
+	template: 'static/legal.stache'
+   }
+},{
+   path: 'pages/privacy',
+   control: StaticPage,
+   options: {
+	template: 'static/privacy.stache'
+   }
+},
+{
+   path: 'pages/scc-info',
+   control: StaticPage,
+   options: {
+	template: 'static/scc-info.stache'
+   }
+},
+ {
+  path: 'pages/block',
   control: StaticPage,
   options: {
-    template: 'static/contact.stache'
+    template: 'static/block.stache'
   }
+ },
+{
+   path: 'pages/login',
+   control: UserLoginControl,
 }, {
-  path: 'pages/login',
-  control: UserLoginControl,
+   path: 'pages/logout',
+   control: UserLogoutControl,
 }, {
-  path: 'pages/logout',
-  control: UserLogoutControl,
+   path: 'activate/{user}/{key}',
+   control: UserActivateControl
 }, {
-  path: 'activate/{user}/{key}',
-  control: UserActivateControl
+   path: 'recovery/{user}/{key}',
+   control: UserPasswordRecoveryControl
 }, {
-  path: 'recovery/{user}/{key}',
-  control: UserPasswordRecoveryControl
+   path: 'pages/register',
+   control: UserSignupControl
 }, {
-  path: 'pages/register',
-  control: UserSignupControl
+   path: 'pages/reset-password',
+   control: UserPasswordResetControl
 }, {
-  path: 'pages/reset-password',
-  control: UserPasswordResetControl
+   path: 'pages/profile',
+   control: UserProfileControl,
+   guard: loggedInGuard
 }, {
-  path: 'pages/profile',
-  control: UserProfileControl,
-  guard: loggedInGuard
+   path: 'pages/jobs',
+   control: JobListControl,
+   options: {
+	page: 1
+   },
+   classes: 'fullsize-container',
+   guard: loggedInGuard
 }, {
-  path: 'pages/jobs',
-  control: JobListControl,
-  options: {
-    page: 1
-  },
-  classes: 'fullsize-container',
-  guard: loggedInGuard
+   path: 'pages/jobs/{page}',
+   control: JobListControl,
+   classes: 'fullsize-container',
+   guard: loggedInGuard
 }, {
-  path: 'pages/jobs/{page}',
-  control: JobListControl,
-  classes: 'fullsize-container',
-  guard: loggedInGuard
+   path: 'jobs/{job}',
+   control: JobDetailControl,
+   classes: 'fullsize-container',
+   guard: loggedInGuard
 }, {
-  path: 'jobs/{job}',
-  control: JobDetailControl,
-  classes: 'fullsize-container',
-  guard: loggedInGuard
+   path: 'jobs/{job}/{tab}',
+   control: JobDetailControl,
+   classes: 'fullsize-container',
+   guard: loggedInGuard
 }, {
-  path: 'jobs/{job}/{tab}',
-  control: JobDetailControl,
-  classes: 'fullsize-container',
-  guard: loggedInGuard
+   path: 'run/{app}',
+   control: SubmitJobControl,
+   classes: 'fullsize-container',
+   guard: loggedInGuard
 }, {
-  path: 'run/{app}',
-  control: SubmitJobControl,
-  classes: 'fullsize-container',
-  guard: loggedInGuard
-}, {
-  path: 'pages/{page}',
-  control: StaticPage
+   path: 'pages/{page}',
+   control: StaticPage
 }];
 
 function loggedInGuard(appState) {
