@@ -389,14 +389,14 @@ public class UserService {
 			}
 		}
 
-		String[] roles = new String[] { mailProvided ? DEFAULT_ROLE : DEFAULT_ANONYMOUS_ROLE};
-
-		CountryDao countryDao = new CountryDao(getDatabase());
+		//String[] roles = new String[] { mailProvided ? DEFAULT_ROLE : DEFAULT_ANONYMOUS_ROLE};
+		CountryDao countryDao = new CountryDao(application.getDatabase());
 		List<Country> countries = countryDao.findByQuery(instituteCountry);
 		Country country = countries.get(0);
 		String[] roles;
 		if (country.getAllowed()) {
-			roles = new String[] { DEFAULT_ROLE };
+		    //roles = new String[] { DEFAULT_ROLE };
+			roles=new String[] { mailProvided ? DEFAULT_ROLE : DEFAULT_ANONYMOUS_ROLE};
 		} else {
 			roles = new String[] { "" };
 		}
