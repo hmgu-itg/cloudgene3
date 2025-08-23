@@ -12,7 +12,7 @@ import io.micronaut.security.annotation.Secured;
 import jakarta.inject.Inject;
 
 @Controller("/api/v2/users/countries")
-public class GroupController {
+public class CountryController {
 	@Inject
 	protected CountryService countryService;
 
