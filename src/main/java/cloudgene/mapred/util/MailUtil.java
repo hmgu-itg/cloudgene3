@@ -59,8 +59,8 @@ public class MailUtil {
 			session = Session.getInstance(props);
 		}
 		
-		log.debug("Printing props: ");
-		log.debug(props);
+		//log.debug("Printing props: ");
+		//log.debug(props);
 
 		try {
           // Get the local host InetAddress object
