@@ -2,10 +2,13 @@ package cloudgene.mapred.server.services;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cloudgene.mapred.core.Country;
+import cloudgene.mapred.database.CountryDao;
 import cloudgene.mapred.core.Template;
 import cloudgene.mapred.core.User;
 import cloudgene.mapred.database.UserDao;
@@ -15,6 +18,9 @@ import cloudgene.mapred.server.responses.MessageResponse;
 import cloudgene.mapred.util.HashUtil;
 import cloudgene.mapred.util.MailUtil;
 import cloudgene.mapred.util.Page;
+import cloudgene.mapred.core.Country;
+import cloudgene.mapred.database.CountryDao;
+
 import io.micronaut.http.HttpStatus;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
@@ -26,7 +32,7 @@ public class UserService {
 
 	public static final String MESSAGE_USER_NOT_FOUND = "User %s not found.";
 
-	private static final String MESSAGE_USER_PROFILE_DELETE = "User profile successfully delete.";
+	private static final String MESSAGE_USER_PROFILE_DELETE = "User profile successfully deleted.";
 
 	private static final String MESSAGE_DELETE_ERROR = "Error during deleting your user profile.";
 
@@ -349,7 +355,17 @@ public class UserService {
 	}
 
 	public MessageResponse registerUser(String username, String mail, String new_password, String confirm_new_password,
-			String full_name) {
+					    String full_name,
+					    String instituteEmail,String instituteName,String instituteCity,
+					    String institutePostCode,String instituteCountry,String instituteAddress1, String instituteAddress2,
+					    String termsAndConditions,String termsAndConditionsCountry) {
+		// check if user accepted terms of service
+		if (!termsAndConditions.equals("on")) {
+			return MessageResponse.error("Must accept Terms of Service");
+		}
+		if (!termsAndConditionsCountry.equals("on")) {
+			return MessageResponse.error("Must agree to only use within EU-/EEA-country");
+		}	    
 		// check username
 		String error = User.checkUsername(username);
 		if (error != null) {
@@ -362,7 +378,6 @@ public class UserService {
 
 		// check email
 		boolean mailProvided = (mail != null && !mail.isEmpty());
-
 		if (application.getSettings().isEmailRequired() || mailProvided) {
 			// check email
 			error = User.checkMail(mail);
@@ -374,7 +389,17 @@ public class UserService {
 			}
 		}
 
-		String[] roles = new String[] { mailProvided ? DEFAULT_ROLE : DEFAULT_ANONYMOUS_ROLE};
+		//String[] roles = new String[] { mailProvided ? DEFAULT_ROLE : DEFAULT_ANONYMOUS_ROLE};
+		CountryDao countryDao = new CountryDao(application.getDatabase());
+		List<Country> countries = countryDao.findByQuery(instituteCountry);
+		Country country = countries.get(0);
+		String[] roles;
+		if (country.getAllowed()) {
+		    //roles = new String[] { DEFAULT_ROLE };
+			roles=new String[] { mailProvided ? DEFAULT_ROLE : DEFAULT_ANONYMOUS_ROLE};
+		} else {
+			roles = new String[] { "" };
+		}
 
 		// check password
 		error = User.checkPassword(new_password, confirm_new_password);
@@ -382,7 +407,7 @@ public class UserService {
 			return MessageResponse.error(error);
 		}
 
-		// check password
+		// check name
 		error = User.checkName(full_name);
 		if (error != null) {
 			return MessageResponse.error(error);
@@ -394,6 +419,15 @@ public class UserService {
 		newUser.setMail(mail);
 		newUser.setRoles(roles);
 		newUser.setPassword(HashUtil.hashPassword(new_password));
+		newUser.setAcceptedTandC(new Date());
+		newUser.setAcceptedCountry(new Date());
+		newUser.setInstituteEmail(instituteEmail);
+		newUser.setInstituteName(instituteName);
+		newUser.setInstituteAddress1(instituteAddress1);
+		newUser.setInstituteAddress2(instituteAddress2);
+		newUser.setInstituteCity(instituteCity);
+		newUser.setInstitutePostCode(institutePostCode);
+		newUser.setInstituteCountry(instituteCountry);
 
 		try {
 

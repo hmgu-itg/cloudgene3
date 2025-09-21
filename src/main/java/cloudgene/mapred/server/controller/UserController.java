@@ -157,10 +157,21 @@ public class UserController {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Secured(SecurityRule.IS_ANONYMOUS)
 	public HttpResponse<MessageResponse> register(String username, @Parameter("full-name") String full_name, @Nullable String mail,
-		@Nullable @Parameter("new-password") String new_password, @Nullable @Parameter("confirm-new-password") String confirm_new_password) {
-
+						      @Nullable @Parameter("new-password") String new_password,
+						      @Nullable @Parameter("confirm-new-password") String confirm_new_password,
+						      @Nullable @Parameter("institute-mail") String instituteEmail,
+						      @Nullable @Parameter("institute-name") String instituteName,
+						      @Nullable @Parameter("institute-city") String instituteCity,
+						      @Nullable @Parameter("institute-postcode") String institutePostCode,
+						      @Nullable @Parameter("institute-country") String instituteCountry,
+						      @Nullable @Parameter("institute-address1") String instituteAddress1,
+						      @Nullable @Parameter("institute-address2") String instituteAddress2,
+						      @Nullable @Parameter("accept-terms-and-conditions") String termsAndConditions,
+						      @Nullable @Parameter("accept-eu") String termsAndConditionsCountry) {
 		MessageResponse response = userService.registerUser(username, mail, new_password, confirm_new_password,
-				full_name);
+								    full_name,instituteEmail,instituteName,instituteCity,
+								    institutePostCode,instituteCountry,instituteAddress1, instituteAddress2,
+								    termsAndConditions,termsAndConditionsCountry);
 		return HttpResponse.ok(response);
 
 	}

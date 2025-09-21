@@ -34,7 +34,7 @@ public class Settings {
 
 	private String localWorkspace = "workspace";
 
-	private String name = "Cloudgene";
+	private String name = "Helmholtz Munich Imputation Server";
 
 	private Map<String, String> colors;
 
@@ -108,7 +108,7 @@ public class Settings {
 		MenuItem helpMenuItem = new MenuItem();
 		helpMenuItem.setId("help");
 		helpMenuItem.setName("Help");
-		String helpLink = Configuration.get("CG_HELP_PAGE", "http://docs.cloudgene.io");
+		String helpLink = Configuration.get("CG_HELP_PAGE","https://imputationserver-doc.readthedocs.io/en/latest/");
 		helpMenuItem.setLink(helpLink);
 		navigation.add(helpMenuItem);
 
