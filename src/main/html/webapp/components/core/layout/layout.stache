@@ -115,7 +115,6 @@
       <small><a href="#pages/privacy">Privacy Policy</a></small>
       <small><a href="#pages/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></small>
      </p>
-    
     <p><small>{{{footer}}}</small></p>
   </div>
 </footer>
