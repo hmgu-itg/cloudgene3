@@ -97,7 +97,7 @@ var routes = [{
   guard: adminGuard
 }, {
   path: 'pages/admin-settings-country',
-  control: SettingsCountryControl
+    control: SettingsCountryControl,
   guard: adminGuard
 }, {
   path: 'pages/admin-logs',
