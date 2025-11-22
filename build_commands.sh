@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-mvn install -Dmaven.test.skip=true
+mvn -Dmaven.test.skip=true package
 
 cd ~/repos/cloudgene3/target/cloudgene-3.1.3
 chmod 750 cloudgene
