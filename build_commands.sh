@@ -2,7 +2,7 @@
 
 mvn install -Dmaven.test.skip=true
 
-cd ~/repos/cloudgene3/target/cloudgene-3.1.2
+cd ~/repos/cloudgene3/target/cloudgene-3.1.3
 chmod 750 cloudgene
 rm -rf /local/cloudgene3/webapp ; cp -r webapp /local/cloudgene3/
 # rm -rf /local/cloudgene3/cloudgene_exec/sample ; cp -r sample /local/cloudgene3/
