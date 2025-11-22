@@ -6,6 +6,8 @@
 
 <form id="signon-form" class="form-horizontal" autocomplete="off">
 
+  <div class="col">
+  
   <div class="form-group">
     <label for="username" class="control-label">Username:</label>
     <input id="username" name="username" type="text" class="form-control col-sm-3" autocomplete="off">
@@ -71,5 +73,7 @@
   <div class="form-group">
     <button id="save" class="btn btn-primary" data-loading-text="please wait...">Register</button>
   </div>
+
+</div>
 
 </form>
