@@ -78,6 +78,7 @@
           <div class="invalid-feedback"></div>
         </div>
 
+<!--
         <div class="form-group">
           <label for="institute-country" class="control-label">Country:</label>
           <select id="institute-country" name="institute-country" class="form-control">
@@ -88,7 +89,7 @@
           </select>
           <div class="invalid-feedback"></div>
         </div>
-
+-->
         <div class="form-group" style="position: relative;">
           {{! <label style="float: left;" for="accept-terms-and-conditions" class="control-label">I agree to the terms & conditions: </label> }}
           After alignment with the responsible administrative personnel of my institution I confirm that I am fully authorized to accept these <a id="tos-view-btn">Terms of Service</a> including the Data Processing Agreement on behalf of my institution:
