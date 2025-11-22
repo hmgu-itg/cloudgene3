@@ -6,7 +6,7 @@
 
     <form id="signon-form" class="form-horizontal row" autocomplete="off">
       <div class="col">
-        <h3>Personal details</h3>
+        <h3>Personal details HERE</h3>
         <div class="form-group">
           <label for="username" class="control-label">Username:</label>
           <input id="username" name="username" type="text" class="form-control" autocomplete="off">
