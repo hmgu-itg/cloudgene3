@@ -58,6 +58,7 @@
 								<small class="text-muted"><i class="far fa-calendar-alt"></i> 27 June 2017</small><br>
 								Updated pipeline to v1.0.2. Release notes can be found <a href="https://github.com/genepi/imputationserver/releases/tag/1.0.2" target="_blank">here</a>.
 							</p>
+{{!--							
 							<p>
 								<small class="text-muted"><i class="far fa-calendar-alt"></i> 29 Aug 2016</small><br>
 								Imputation server paper is out now: <a href="http://www.nature.com/ng/journal/v48/n10/full/ng.3656.html" target="_blank">Das et al., Nature Genetics 2016</a>
@@ -78,7 +79,7 @@
 								<small class="text-muted"><i class="far fa-calendar-alt"></i> 24 April 2015</small><br>
 								<a target="_blank" href="http://www.haplotype-reference-consortium.org/">HRC release 1</a> (64,976 haplotypes at 39,235,157 SNPs) is now ready for use for HRC consortium members.
 							</p>
-
+--}}
 						</div>
 
 						<div class="col-md-4">

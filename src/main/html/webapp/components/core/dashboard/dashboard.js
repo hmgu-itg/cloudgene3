@@ -3,6 +3,7 @@ import Control from 'can-control';
 import stache from 'can-stache';
 
 import Counter from 'models/counter';
+import News from 'models/news';
 
 export default Control.extend({
 
