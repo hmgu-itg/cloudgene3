@@ -36,6 +36,25 @@ public class NewsDao extends JdbcDataAccessObject {
     }
 
     @SuppressWarnings("unchecked")
+    public News findLatest() {
+	StringBuffer sql = new StringBuffer();
+
+	sql.append("select * ");
+	sql.append("from `news` ");
+	sql.append("order by id desc limit 1");
+
+	List<News> result = new Vector<News>();
+
+	try {
+	    result = query(sql.toString(), new NewsMapper());
+	    log.debug("find latest news successful; size = " + result.size());
+	} catch (SQLException e1) {
+	    log.error("find latest news failed", e1);
+	}
+	return result[0];
+    }
+
+    @SuppressWarnings("unchecked")
     public List<News> findAll() {
 	StringBuffer sql = new StringBuffer();
 

@@ -18,5 +18,11 @@ public class NewsController {
 	public String getNews() {
 		return newsService.getNews();
 	}
+	@Get("/api/v2/users/latestnews")
+	@Secured(SecurityRule.IS_ANONYMOUS)
+	//@Secured(User.ROLE_ADMIN)
+	public String getLatestNews() {
+		return newsService.getLatestNews();
+	}
 
 }

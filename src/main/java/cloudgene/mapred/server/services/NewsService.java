@@ -16,7 +16,6 @@ public class NewsService {
 	@Inject
 	protected cloudgene.mapred.server.Application application;
     
-    /* all allowed countries */
     public String getNews() {
         NewsDao dao = new NewsDao(application.getDatabase());
         List<News> news = dao.findAll();
@@ -27,6 +26,20 @@ public class NewsService {
                 object.put("text",n.getText());
                 jsonArray.add(object);
         }
+        JSONObject object = new JSONObject();
+        object.put("data", jsonArray);
+
+        return object.toString();
+    };
+    
+    public String getLatestNews() {
+        NewsDao dao = new NewsDao(application.getDatabase());
+        News news = dao.findLatest();
+        JSONArray jsonArray = new JSONArray();
+	JSONObject object = new JSONObject();
+	object.put("time",news.getTimestamp());
+	object.put("text",news.getText());
+	jsonArray.add(object);
         JSONObject object = new JSONObject();
         object.put("data", jsonArray);
 
