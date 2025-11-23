@@ -59,7 +59,7 @@
 						</div> -->
 			<div class="col-md-5 text-center">
 				<p>
-					<span class="lead" style="font-size: 200%;">{{ Math.round(counter.attr('users')).toLocaleString() }}</span><br>Registerd Users
+					<span class="lead" style="font-size: 200%;">{{counter.attr('users')}}</span><br>Registerd Users
 				</p>
 			</div>
 						
