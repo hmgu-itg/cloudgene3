@@ -22,7 +22,7 @@ public class NewsDao extends JdbcDataAccessObject {
 
     public boolean insert(News n) {
 	StringBuilder sql = new StringBuilder();
-	sql.append("insert into `news` (text) ");
+	sql.append("insert into `news` (news_text) ");
 	sql.append("values (?)");
 
 	try {
@@ -81,8 +81,8 @@ public class NewsDao extends JdbcDataAccessObject {
 	public News mapRow(ResultSet rs, int row) throws SQLException {
 	    News news = new News();
 	    news.setId(rs.getInt("news.id"));
-	    news.setTimestamp(rs.getString("news.timestamp"));
-	    news.setText(rs.getString("news.text"));
+	    news.setTimestamp(rs.getString("news.news_time"));
+	    news.setText(rs.getString("news.news_text"));
 	    return news;
 	}
     }
