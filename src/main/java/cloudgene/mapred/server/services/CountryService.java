@@ -29,6 +29,8 @@ public class CountryService {
             if (country.getDisplay() == true) {
                 JSONObject object = new JSONObject();
                 object.put("name", country.getName());
+                object.put("display", country.getDisplay());
+                object.put("allowed", country.getAllowed());
                 jsonArray.add(object);
             }
         }
