@@ -61,13 +61,13 @@
 <div class="row">
   <div class="form-group col-sm-3">
     <label for="new-password" class="control-label">Password:</label>
-    <input id="new-password" name="new-password" type="password" class="form-control col-sm-3" autocomplete="off">
+    <input id="new-password" name="new-password" type="password" class="form-control" autocomplete="off">
     <div class="invalid-feedback"></div>
   </div>
 
   <div class="form-group col-sm-3">
     <label for="confirm-new-password" class="control-label">Confirm password:</label>
-    <input id="confirm-new-password" name="confirm-new-password" type="password" class="form-control col-sm-3" autocomplete="off">
+    <input id="confirm-new-password" name="confirm-new-password" type="password" class="form-control" autocomplete="off">
     <div class="invalid-feedback"></div>
   </div>
 
