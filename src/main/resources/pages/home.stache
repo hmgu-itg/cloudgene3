@@ -60,7 +60,7 @@
 							</p>
 							<p>
 								<small class="text-muted"><i class="far fa-calendar-alt"></i> 27 June 2017</small><br>
-								<span class="lead" style="font-size: 200%;"><%= news.toLocaleString() %></span><br>
+								<span class="lead" style="font-size: 200%;"><%= news.attr('data')[0]["text"].toLocaleString() %></span><br>
 							</p>
 {{!--							
 							<p>
