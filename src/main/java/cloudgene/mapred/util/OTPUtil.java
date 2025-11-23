@@ -1,5 +1,7 @@
 package cloudgene.mapred.util;
 
+import java.util.Base64;
+
 import org.apache.commons.codec.binary.Base32;
 import java.security.SecureRandom;
 import java.io.IOException;

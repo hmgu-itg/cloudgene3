@@ -478,10 +478,10 @@ public class UserService {
 
 			dao.insert(newUser);
 			if (enable_2fa.equals("on")){
-			    return MessageResponse.success(QR,true);
+			    return MessageResponse.success(QR);
 			}
 			else{
-			    return MessageResponse.success("NA",true);
+			    return MessageResponse.success("NA");
 			}
 		} catch (Exception e) {
 
