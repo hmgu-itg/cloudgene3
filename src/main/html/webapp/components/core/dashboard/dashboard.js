@@ -27,25 +27,16 @@ export default Control.extend({
           }));
           });
 
-    // 	  News.findAll({}, function(news) {
-    // document.getElementById('list')
-    // 		  .appendChild(can.view('newsList',news));
-	  // 	  });
 	  
-// News.findAll({}, function(news) {
-//     document.getElementById('ID')
-//         .appendChild(can.view('newsList', {news: news}));
-	  // });
-	  
-        // News.findAll({}, function(news) {
-        //   $(element).html(template({
-        //     news: news
-        //   }));
-        // }, function(message) {
-        //   $(element).html(template({
-        //     news: message
-        //   }));
-        // });
+        News.findAll({}, function(news) {
+          $(element).html(template({
+            news: news
+          }));
+        }, function(message) {
+          $(element).html(template({
+            news: message
+          }));
+        });
 
       });
   }
