@@ -98,7 +98,7 @@
 
         <div class="form-group col-sm-4">
           <label for="institute-address" class="control-label">Address:</label>
-          <input id="institute-address1" name="institute-address1" type="text" class="form-control" autocomplete="off">
+          <input id="institute-address" name="institute-address" type="text" class="form-control" autocomplete="off">
           <!-- <input id="institute-address2" name="institute-address2" type="text" class="form-control" autocomplete="off"> -->
           <div class="invalid-feedback"></div>
         </div>
