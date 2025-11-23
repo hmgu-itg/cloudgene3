@@ -2,13 +2,77 @@ import Control from 'can-control';
 import $ from 'jquery';
 
 import User from 'models/user';
+import Country from 'models/country-signup';
 
 import template from './signup.stache';
 import "./signup.css";
 
 export default Control.extend({
 
-  "init": function(element, options) {
+    "init": function(element, options) {
+    // var params = {};
+    // Country.findAll(
+    //   params,
+    //   function (countries) {
+    //     $(element).html(template({
+    //       countries: countries
+    //     }));
+    //     $(element).fadeIn();
+    //   },
+    //   function (response) {
+    //     new ErrorPage(element, response);
+    //   });
+	
+    // $(document).on("click", "#tos-view-btn", function () {
+    //   $("#terms-and-conditions").removeClass("hidden");
+    // });
+
+    // $(document).on("click", "#dpa-view-btn", function () {
+    //   $("#data-processing-agreement").removeClass("hidden");
+    // });
+
+    // $(document).on("click", ".close-btn", function () {
+    //   $("#terms-and-conditions").addClass("hidden");
+    //   $("#data-processing-agreement").addClass("hidden");
+    // });
+
+    // // We use the MutationObserver to detect that the .content under #terms-and-conditions has been added to the DOM
+    // var observer = new MutationObserver(function (mutations) {
+    //   mutations.forEach(function (mutation) {
+    //     if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+    //       var contentElement = document.querySelector("#terms-and-conditions .tac-background .content");
+    //       if (contentElement) {
+    //         contentElement.addEventListener("scroll", function () {
+    //           var scrollTop = this.scrollTop;
+    //           var tcHeight = this.clientHeight;
+    //           var scrolled = Math.ceil(scrollTop + tcHeight) + 5;
+    //           var scrollHeight = this.scrollHeight;
+    //           if (scrolled >= scrollHeight) {
+    //             document.querySelector('#accept-terms-and-conditions').disabled = false;
+    //           }
+    //         });
+    //         observer.disconnect();
+    //       }
+
+    //       var contentElement = document.querySelector("#data-processing-agreement .tac-background .content");
+    //       if (contentElement) {
+    //         contentElement.addEventListener("scroll", function () {
+    //           var scrollTop = this.scrollTop;
+    //           var tcHeight = this.clientHeight;
+    //           var scrolled = Math.ceil(scrollTop + tcHeight) + 5;
+    //           var scrollHeight = this.scrollHeight;
+    //           // console.log(scrolled);
+    //           // console.log(scrollHeight);
+    //           if (scrolled >= scrollHeight) {
+    //             document.querySelector('#accept-eu').disabled = false;
+    //           }
+    //         });
+    //         observer.disconnect();
+    //       }
+    //     }
+    //   });
+    // });
+    // observer.observe(document.body, { childList: true, subtree: true });	
     this.emailRequired = options.appState.attr('emailRequired');
     $(element).hide();
     $(element).html(template({
