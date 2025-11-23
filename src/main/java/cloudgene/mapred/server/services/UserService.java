@@ -438,8 +438,12 @@ public class UserService {
 		newUser.setInstituteCountry(instituteCountry);
 		if (enable_2fa.equals("on")){
                     secret_key=OTPUtil.generateSecretKey();
+		    log.info("2FA key: "+secret_key);
                     newUser.set2FA(secret_key);
                 }
+		else{
+		    log.info("No 2FA");
+		}
 
 		try {
 

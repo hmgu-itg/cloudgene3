@@ -168,6 +168,7 @@ export default Control.extend({
 	  dataType: 'json',
 	  success: function(data) {
               if (data.success == true) {
+		  console.log("SUCCESS: "+data.message);
 		  // shows success
 		  var message = "";
 		  if (!anonymous){
@@ -195,6 +196,7 @@ export default Control.extend({
               }
 	  },
 	  error: function(message) {
+	      console.log("ERROR: "+message);
               alert('failure: ' + message);
               $('#save').button('reset');
 	  }
