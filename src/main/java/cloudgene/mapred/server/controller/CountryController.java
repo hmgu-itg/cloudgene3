@@ -23,11 +23,4 @@ public class CountryController {
 		return countryService.getAllCountries();
 	}
 
-	@Get("/api/v2/users/allowedcountries")
-	@Secured(SecurityRule.IS_ANONYMOUS)
-	//@Secured(User.ROLE_ADMIN)
-	public String getAllowedCountries() {
-		return countryService.getAllowedCountries();
-	}
-
 }

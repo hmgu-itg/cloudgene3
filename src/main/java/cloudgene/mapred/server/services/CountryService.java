@@ -26,26 +26,6 @@ public class CountryService {
         List<Country> countries = dao.findAll();
         JSONArray jsonArray = new JSONArray();
         for (Country country : countries) {
-            if (country.getDisplay() == true) {
-                JSONObject object = new JSONObject();
-                object.put("name", country.getName());
-                object.put("display", country.getDisplay());
-                object.put("allowed", country.getAllowed());
-                jsonArray.add(object);
-            }
-        }
-        JSONObject object = new JSONObject();
-        object.put("data", jsonArray);
-
-        return object.toString();
-    };
-
-    /* allowed countries */
-    public String getAllowedCountries() {
-        CountryDao dao = new CountryDao(application.getDatabase());
-        List<Country> countries = dao.findAll();
-        JSONArray jsonArray = new JSONArray();
-        for (Country country : countries) {
             if (country.getAllowed() == true) {
                 JSONObject object = new JSONObject();
                 object.put("name", country.getName());
@@ -59,6 +39,7 @@ public class CountryService {
 
         return object.toString();
     };
+
 
     // /* get countries */
     //     public String getCountries(String query, String page, int pageSize) {

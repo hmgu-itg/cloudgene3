@@ -11,7 +11,7 @@ export default Control.extend({
 
     "init": function(element, options) {
     var params = {};
-    Country.findAllowed(
+    Country.findAll(
       params,
       function (countries) {
         $(element).html(template({
@@ -81,7 +81,7 @@ export default Control.extend({
       userWithoutEmailDescription: options.appState.attr('userWithoutEmailDescription')
     }));
     $(element).fadeIn();
-    },
+  },
 
 
   "#anonymous1 click" : function(){
