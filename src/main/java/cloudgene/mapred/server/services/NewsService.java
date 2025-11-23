@@ -26,10 +26,10 @@ public class NewsService {
                 object.put("text",n.getText());
                 jsonArray.add(object);
         }
-        JSONObject object = new JSONObject();
-        object.put("data", jsonArray);
+        // JSONObject object = new JSONObject();
+        // object.put("data", jsonArray);
 
-        return object.toString();
+        return jsonArray.toString();
     };
     
     public String getLatestNews() {
