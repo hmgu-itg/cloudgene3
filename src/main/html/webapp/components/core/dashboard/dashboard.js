@@ -15,19 +15,24 @@ export default Control.extend({
 
         var template = stache(data);
 
-        Counter.findOne({}, function(counter) {
-          $(element).html(template({
-            counter: counter,
-            loggedIn: options.appState.loggedIn
-          }));
-        }, function(message) {
-          $(element).html(template({
-            counter: undefined,
-            loggedIn: options.loggedIn
-          }));
-        });
+        // Counter.findOne({}, function(counter) {
+        //   $(element).html(template({
+        //     counter: counter,
+        //     loggedIn: options.appState.loggedIn
+        //   }));
+        // }, function(message) {
+        //   $(element).html(template({
+        //     counter: undefined,
+        //     loggedIn: options.loggedIn
+        //   }));
+          // });
 
-        // News.findOne({}, function(news) {
+	  News.findAll({}, function(news) {
+    document.getElementById('list')
+		  .appendChild(can.view('newsList',news));
+	  });
+
+        // News.findAll({}, function(news) {
         //   $(element).html(template({
         //     news: news
         //   }));

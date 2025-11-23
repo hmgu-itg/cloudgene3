@@ -19,35 +19,29 @@
 
 <!-- dark:  #303846 -->
 <!-- light: #71829d -->
-
+{{!--
 <div class="text-white" style="background: #71829d;">
 	<div class="container pt-3">
 		<div class="row justify-content-center text-center ">
-		{{!--
 			<div class="col-md-3 text-center">
 				<p>
 					<span class="lead" style="font-size: 200%;"><%= counter.attr('complete.chromosomes') ? (Math.round(counter.attr('complete.chromosomes') / 22.0 /1000.0/1000.0 * 10) / 10).toLocaleString() : '0'%> M</span><br>Imputed Genomes
 				</p>
 			</div>
-			--}}
 			<div class="col-md-3 text-center">
 				<p>
-					<span class="lead" style="font-size: 200%;"><% Math.round(counter.attr('users')).toLocaleString() %></span><br>Registerd Users
+					<span class="lead" style="font-size: 200%;"><%= Math.round(counter.attr('users')).toLocaleString() %></span><br>Registerd Users
 				</p>
 			</div>
-		{{!--
 			<div class="col-md-3 text-center">
 				<p>
 					<span class="lead" style="font-size: 200%;">> 100</span><br>Published GWAS
 				</p>
 			</div>
-			--}}
-
 		</div>
 	</div>
 </div>
-
-
+--}}
 
 <!-- News and Logos -->
 <div class="py-5 bg-light">
@@ -63,9 +57,13 @@
 								<small class="text-muted"><i class="far fa-calendar-alt"></i> 27 June 2017</small><br>
 								Updated pipeline to v1.0.2. Release notes can be found <a href="https://github.com/genepi/imputationserver/releases/tag/1.0.2" target="_blank">here</a>.
 							</p>
+
 							<p>
-								<small class="text-muted"><i class="far fa-calendar-alt"></i> 27 June 2017</small><br>
-								<span class="lead" style="font-size: 200%;"><%= news.attr('data')[0]["text"].toLocaleString() %></span><br>
+							<script type="text/ejs" id="newsList">
+							<% for(var i = 0; i < news.length; ++i) { %>
+							    <li><%= this[i].attr('text') %> </li>
+							    <% } %>
+							    </script>
 							</p>
 {{!--							
 							<p>
