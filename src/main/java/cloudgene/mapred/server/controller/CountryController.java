@@ -17,7 +17,7 @@ public class CountryController {
 	protected CountryService countryService;
 
 	@Get("/api/v2/users/countries")
-	@Secured(SecurityRule.IS_AUTHENTICATED)
+	//@Secured(SecurityRule.IS_AUTHENTICATED)
 	//@Secured(User.ROLE_ADMIN)
 	public String getAllowedCountries() {
 		return countryService.getAllowedCountries();
