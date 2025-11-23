@@ -142,8 +142,9 @@
           <span class="tos-help">Click to open the Terms of Service</span>
 
           <input id="accept-terms-and-conditions" name="accept-terms-and-conditions" class="form-control"
-          type="checkbox" style="width: auto; height: auto; display: inline;" disabled data-tooltip="">
-          <span class="tooltip">You must read and scroll to the end of the Terms of Service</span>
+          type="checkbox" style="width: auto; height: auto; display: inline;" data-tooltip="">
+          <!-- type="checkbox" style="width: auto; height: auto; display: inline;" disabled data-tooltip=""> -->
+          <!-- <span class="tooltip">You must read and scroll to the end of the Terms of Service</span> -->
           <div class="invalid-feedback"></div>
         </div>
 
@@ -151,8 +152,9 @@
           I herewith accept these Terms of Service including the <a id="dpa-view-btn">Data Processing Agreement</a> on behalf of my institution:
           <span class="dpa-help">Click to open the Data Processing Agreement</span>
           <input id="accept-eu" name="accept-eu" class="form-control"
-          type="checkbox" style="width: auto; height: auto; display: inline;" disabled data-tooltip="">
-          <span class="tooltip">You must first scroll to the end of the Data Processing Agreement</span>
+          type="checkbox" style="width: auto; height: auto; display: inline;" data-tooltip="">
+          <!-- type="checkbox" style="width: auto; height: auto; display: inline;" disabled data-tooltip=""> -->
+          <!-- <span class="tooltip">You must first scroll to the end of the Data Processing Agreement</span> -->
           <div class="invalid-feedback"></div>
         </div>
 
