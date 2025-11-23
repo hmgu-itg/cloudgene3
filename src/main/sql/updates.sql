@@ -220,3 +220,6 @@ create table job_values (
 
 -- 3.0.1
 ALTER TABLE parameter modify `value` varchar(200) NULL;
+
+-- 3.1.4
+ALTER TABLE `user` ADD COLUMN key_2fa varchar(100) NULL DEFAULT NULL;
