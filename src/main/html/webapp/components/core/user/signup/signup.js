@@ -47,6 +47,8 @@ export default Control.extend({
               var tcHeight = this.clientHeight;
               var scrolled = Math.ceil(scrollTop + tcHeight) + 5;
               var scrollHeight = this.scrollHeight;
+              console.log(scrolled);
+              console.log(scrollHeight);
               if (scrolled >= scrollHeight) {
                 document.querySelector('#accept-terms-and-conditions').disabled = false;
               }
@@ -61,8 +63,8 @@ export default Control.extend({
               var tcHeight = this.clientHeight;
               var scrolled = Math.ceil(scrollTop + tcHeight) + 5;
               var scrollHeight = this.scrollHeight;
-              // console.log(scrolled);
-              // console.log(scrollHeight);
+              console.log(scrolled);
+              console.log(scrollHeight);
               if (scrolled >= scrollHeight) {
                 document.querySelector('#accept-eu').disabled = false;
               }
@@ -83,7 +85,7 @@ export default Control.extend({
       userWithoutEmailDescription: options.appState.attr('userWithoutEmailDescription')
     }));
     $(element).fadeIn();
-    },
+    }, // init
 
   "#anonymous1 click" : function(){
     this.updateEmailControl();
