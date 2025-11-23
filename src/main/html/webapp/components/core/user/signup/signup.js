@@ -55,6 +55,9 @@ export default Control.extend({
             });
             observer.disconnect();
           }
+	    else{
+		console.log("TAC element not found");
+	    }
 
           var contentElement = document.querySelector("#data-processing-agreement .tac-background .content");
           if (contentElement) {
@@ -71,6 +74,10 @@ export default Control.extend({
             });
             observer.disconnect();
           }
+	    else{
+		console.log("DPA element not found");
+	    }
+	    
         }
       });
     });
