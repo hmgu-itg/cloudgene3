@@ -161,38 +161,44 @@ export default Control.extend({
 
     $('#save').button('loading');
 
-    $.ajax({
-      url: "api/v2/users/register",
-      type: "POST",
-      data: $(element).find("#signon-form").serialize(),
-      dataType: 'json',
-      success: function(data) {
-        if (data.success == true) {
-          // shows success
-          var message = "";
-          if (!anonymous){
-            message = "An email including the activation code has been sent to your address."
-          } else {
-            message = "Your account is now active. <a href=\"/\">Login now</a>."
-          }
+      $.ajax({
+	  url: "api/v2/users/register",
+	  type: "POST",
+	  data: $(element).find("#signon-form").serialize(),
+	  dataType: 'json',
+	  success: function(data) {
+              if (data.success == true) {
+		  // shows success
+		  var message = "";
+		  if (!anonymous){
+		      message = "An email including the activation code has been sent to your address."
+		  } else {
+		      message = "Your account is now active. <a href=\"/\">Login now</a>."
+		  }
 
-          $('#signon-form').hide();
-          $('#success-message').html(message);
-          $('#success-message').show();
-        } else {
-          // shows error msg
-          username = $('#signon-form').find("[name='username']");
-          that.updateControl(username, data.message);
-          $('#save').button('reset');
-
-        }
-      },
-      error: function(message) {
-        alert('failure: ' + message);
-        $('#save').button('reset');
-      }
-    });
-
+		  $('#signon-form').hide();
+		  $('#success-message').html(message);
+		  $('#success-message').show();
+		  if (data.message != "NA"){
+		      $('#QR').attr("src","data:image/png;base64,"+data.message);
+		      $('#QR_div').show();
+		  }
+		  else{
+		      $('#QR_div').hide();
+		  }
+		  window.scrollTo(0,0);
+              } else {
+		  // shows error msg
+		  username = $('#signon-form').find("[name='username']");
+		  that.updateControl(username, data.message);
+		  $('#save').button('reset');
+              }
+	  },
+	  error: function(message) {
+              alert('failure: ' + message);
+              $('#save').button('reset');
+	  }
+      });
   },
 
   updateControl: function(control, error) {

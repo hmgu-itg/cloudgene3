@@ -17,6 +17,7 @@ import cloudgene.mapred.server.exceptions.JsonHttpStatusException;
 import cloudgene.mapred.server.responses.MessageResponse;
 import cloudgene.mapred.util.HashUtil;
 import cloudgene.mapred.util.MailUtil;
+import cloudgene.mapred.util.OTPUtil;
 import cloudgene.mapred.util.Page;
 import cloudgene.mapred.core.Country;
 import cloudgene.mapred.database.CountryDao;
@@ -358,7 +359,12 @@ public class UserService {
 					    String full_name,
 					    String instituteEmail,String instituteName,String instituteCity,
 					    String institutePostCode,String instituteCountry,String instituteAddress1, String instituteAddress2,
+					    String select_2fa,
 					    String termsAndConditions,String termsAndConditionsCountry) {
+	    String enable_2fa=select_2fa;
+	    if (enable_2fa==null){
+		enable_2fa="off";
+	    }
 		// check if user accepted terms of service
 		if (!termsAndConditions.equals("on")) {
 			return MessageResponse.error("Must accept Terms of Service");
@@ -413,6 +419,8 @@ public class UserService {
 			return MessageResponse.error(error);
 		}
 
+                String QR=null;
+                String secret_key=null;
 		User newUser = new User();
 		newUser.setUsername(username);
 		newUser.setFullName(full_name);
@@ -428,6 +436,10 @@ public class UserService {
 		newUser.setInstituteCity(instituteCity);
 		newUser.setInstitutePostCode(institutePostCode);
 		newUser.setInstituteCountry(instituteCountry);
+		if (enable_2fa.equals("on")){
+                    secret_key=OTPUtil.generateSecretKey();
+                    newUser.set2FA(secret_key);
+                }
 
 		try {
 
@@ -448,7 +460,10 @@ public class UserService {
 				String subject = "[" + appName + "] Signup activation";
 				String activationLink = hostname + "/#!activate/" + username + "/" + activationKey;
 				String body = application.getTemplate(Template.REGISTER_MAIL, full_name, appName, activationLink);
-
+				if (enable_2fa.equals("on")){
+				    String GA_url=OTPUtil.getGoogleAuthenticatorURL(secret_key,mail,"HMIS");
+				    QR=OTPUtil.createQR(GA_url,256,256);
+				}
 				MailUtil.send(application.getSettings(), mail, subject, body);
 
 			} else {
@@ -462,9 +477,12 @@ public class UserService {
 					newUser.getId(), newUser.getMail(), Arrays.toString(newUser.getRoles())));
 
 			dao.insert(newUser);
-
-			return MessageResponse.success(MESSAGE_USER_CREATED);
-
+			if (enable_2fa.equals("on")){
+			    return MessageResponse.success(QR,true);
+			}
+			else{
+			    return MessageResponse.success("NA",true);
+			}
 		} catch (Exception e) {
 
 			return MessageResponse.error(e.getMessage());

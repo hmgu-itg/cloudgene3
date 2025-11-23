@@ -166,11 +166,12 @@ public class UserController {
 						      @Nullable @Parameter("institute-country") String instituteCountry,
 						      @Nullable @Parameter("institute-address") String instituteAddress1,
 						      //@Nullable @Parameter("institute-address2") String instituteAddress2,
+						      @Nullable @Parameter("select-2fa") String select_2fa,
 						      @Nullable @Parameter("accept-terms-and-conditions") String termsAndConditions,
 						      @Nullable @Parameter("accept-eu") String termsAndConditionsCountry) {
 		MessageResponse response = userService.registerUser(username, mail, new_password, confirm_new_password,
 								    full_name,instituteEmail,instituteName,instituteCity,
-								    institutePostCode,instituteCountry,instituteAddress1,"NA",
+								    institutePostCode,instituteCountry,instituteAddress1,"NA",select_2fa,
 								    termsAndConditions,termsAndConditionsCountry);
 		return HttpResponse.ok(response);
 
