@@ -172,11 +172,12 @@ export default Control.extend({
 		  // shows success
 		  var message = "";
 		  if (!anonymous){
-		      message = "An email including the activation code has been sent to your address."
+		      message = "An email including the activation code has been sent to your email address."
 		  } else {
 		      message = "Your account is now active. <a href=\"/\">Login now</a>."
 		  }
 
+		  $('#Title').hide();
 		  $('#signon-form').hide();
 		  $('#success-message').html(message);
 		  $('#success-message').show();

@@ -453,6 +453,7 @@ public class UserService {
 			// if email server configured, send mails with activation link. Else
 			// activate user immediately.
 
+			// TODO: uncomment
 			//if (application.getSettings().getMail() != null && mailProvided) {
 			if (mailProvided) {
 
@@ -471,6 +472,7 @@ public class UserService {
 				    QR=OTPUtil.createQR(GA_url,256,256);
 				    log.info("QR: "+QR);
 				}
+				// TODO: uncomment
 				//MailUtil.send(application.getSettings(), mail, subject, body);
 
 			} else {

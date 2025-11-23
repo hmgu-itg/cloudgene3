@@ -7,7 +7,8 @@ import Counter from 'models/counter';
 export default Control.extend({
 
   "init": function(element, options) {
-    var url = 'static/home.stache';
+      var url = 'static/home.stache';
+      console.log("In dashbord.js");
     $.get(url,
       function(data) {
 

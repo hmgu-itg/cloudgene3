@@ -1,10 +1,10 @@
-<h2 style="text-align: center;">Sign up</h2>
+<h2 id="Title" style="text-align: center;">Sign up</h2>
 <br>
 
   <div id="sign-up" class="container">
 
 
-<div class="alert alert-success" id="success-message" style="display: none;"></div>
+<div class="alert alert-success" id="success-message" style="text-align: center;display: none;"></div>
 
 <div id="QR_div" style="display: none;">
 <label for="QR">Scan this QR code using Google Authenticator app</label>
