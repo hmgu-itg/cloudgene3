@@ -58,7 +58,7 @@
 								Updated pipeline to v1.0.2. Release notes can be found <a href="https://github.com/genepi/imputationserver/releases/tag/1.0.2" target="_blank">here</a>.
 							</p>
 
-							<p id="ID">
+							<p>
 <script type="text/mustache" id="newsList">
 {{#news}}
 <li>{{text}}</li>
