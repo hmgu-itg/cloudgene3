@@ -1,3 +1,4 @@
+<div id="background">
 <h2>Sign up</h2>
 <br>
 
@@ -81,7 +82,7 @@
     <button id="save" class="btn btn-primary" data-loading-text="please wait...">Register</button>
   </div>
 
-</div>
+</div> <!-- col -->
 
       <div class="col">
       
@@ -126,8 +127,9 @@
 
 
 
-</div>
+</div> <!-- col -->
 
 </form>
 
-</div>
+</div> <!-- container -->
+</div> <!-- background -->
