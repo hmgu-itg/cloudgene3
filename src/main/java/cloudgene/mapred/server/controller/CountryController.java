@@ -1,9 +1,5 @@
 package cloudgene.mapred.server.controller;
 
-//import java.util.List;
-
-//import cloudgene.mapred.core.Group;
-//import cloudgene.mapred.core.User;
 import cloudgene.mapred.server.services.CountryService;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
