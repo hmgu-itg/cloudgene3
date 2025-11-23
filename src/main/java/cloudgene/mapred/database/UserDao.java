@@ -31,7 +31,7 @@ public class UserDao extends JdbcDataAccessObject {
 		sql.append("values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 		try {
-			Object[] params = new Object[27];
+			Object[] params = new Object[28];
 			params[0] = user.getUsername().toLowerCase();
 			params[1] = user.getPassword();
 			params[2] = user.getFullName();
