@@ -79,47 +79,54 @@
 
 </div>
 
-  <div class="form-group">
-    <button id="save" class="btn btn-primary" data-loading-text="please wait...">Register</button>
-  </div>
-
         <h3>Affiliation details</h3>
-        <div class="form-group">
+<div class="row">
+	
+        <div class="form-group col-sm-4">
           <label for="institute-mail" class="control-label">Supervisor or Legal-representative E-Mail:</label>
           <input id="institute-mail" name="institute-mail" type="text" class="form-control" autocomplete="off">
           <div class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-sm-4">
           <label for="institute-name" class="control-label">Institute name:</label>
           <input id="institute-name" name="institute-name" type="text" class="form-control" autocomplete="off">
           <div class="invalid-feedback"></div>
 	</div>
 
-        <div class="form-group">
+        <div class="form-group col-sm-4">
           <label for="institute-address" class="control-label">Address:</label>
           <input id="institute-address1" name="institute-address1" type="text" class="form-control" autocomplete="off">
-          <input id="institute-address2" name="institute-address2" type="text" class="form-control" autocomplete="off">
+          <!-- <input id="institute-address2" name="institute-address2" type="text" class="form-control" autocomplete="off"> -->
           <div class="invalid-feedback"></div>
         </div>
+</div>
 
-        <div class="form-group">
+<div class="row">
+        <div class="form-group col-sm-4">
           <label for="institute-city" class="control-label">City:</label>
           <input id="institute-city" name="institute-city" type="text" class="form-control" autocomplete="off">
           <div class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-sm-4">
           <label for="institute-state" class="control-label">State:</label>
           <input id="institute-state" name="institute-state" type="text" class="form-control" autocomplete="off">
           <div class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-sm-4">
           <label for="institute-postcode" class="control-label">Postal Code:</label>
           <input id="institute-postcode" name="institute-postcode" type="text" class="form-control" autocomplete="off">
           <div class="invalid-feedback"></div>
         </div>
+</div>
+
+
+  <div class="form-group">
+    <button id="save" class="btn btn-primary" data-loading-text="please wait...">Register</button>
+  </div>
+
 
 </form>
 
