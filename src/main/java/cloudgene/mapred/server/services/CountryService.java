@@ -20,13 +20,33 @@ public class CountryService {
 	@Inject
 	protected cloudgene.mapred.server.Application application;
     
+    /* all countries */
+    public String getAllCountries() {
+        CountryDao dao = new CountryDao(application.getDatabase());
+        List<Country> countries = dao.findAll();
+        JSONArray jsonArray = new JSONArray();
+        for (Country country : countries) {
+            if (country.getDisplay() == true) {
+                JSONObject object = new JSONObject();
+                object.put("name", country.getName());
+                object.put("display", country.getDisplay());
+                object.put("allowed", country.getAllowed());
+                jsonArray.add(object);
+            }
+        }
+        JSONObject object = new JSONObject();
+        object.put("data", jsonArray);
+
+        return object.toString();
+    };
+
     /* allowed countries */
     public String getAllowedCountries() {
         CountryDao dao = new CountryDao(application.getDatabase());
         List<Country> countries = dao.findAll();
         JSONArray jsonArray = new JSONArray();
         for (Country country : countries) {
-            if (country.getDisplay() == true) {
+            if (country.getAllowed() == true) {
                 JSONObject object = new JSONObject();
                 object.put("name", country.getName());
                 object.put("display", country.getDisplay());

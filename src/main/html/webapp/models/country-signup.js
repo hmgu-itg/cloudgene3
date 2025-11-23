@@ -1,5 +1,5 @@
 import Model from 'can-connect/can/model/model';
 
 export default Model.extend({
-    findAll: 'GET /api/v2/users/countries'
+    findAllowed: 'GET /api/v2/users/allowedcountries'
 }, {});

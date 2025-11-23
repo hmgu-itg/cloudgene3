@@ -11,7 +11,7 @@ export default Control.extend({
 
     "init": function(element, options) {
     var params = {};
-    Country.findAll(
+    Country.findAllowed(
       params,
       function (countries) {
         $(element).html(template({
