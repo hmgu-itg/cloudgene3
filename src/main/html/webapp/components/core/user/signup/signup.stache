@@ -136,6 +136,30 @@
 </div>
 
 <div class="row">
+        <div class="form-group col-sm-6" style="position: relative;">
+          {{! <label style="float: left;" for="accept-terms-and-conditions" class="control-label">I agree to the terms & conditions: </label> }}
+          After alignment with the responsible administrative personnel of my institution I confirm that I am fully authorized to accept these <a id="tos-view-btn">Terms of Service</a> including the Data Processing Agreement on behalf of my institution:
+          <span class="tos-help">Click to open the Terms of Service</span>
+
+          <input id="accept-terms-and-conditions" name="accept-terms-and-conditions" class="form-control"
+          type="checkbox" style="width: auto; height: auto; display: inline;" disabled data-tooltip="">
+          <span class="tooltip">You must read and scroll to the end of the Terms of Service</span>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <div class="form-group col-sm-6">
+          I herewith accept these Terms of Service including the <a id="dpa-view-btn">Data Processing Agreement</a> on behalf of my institution:
+          <span class="dpa-help">Click to open the Data Processing Agreement</span>
+          <input id="accept-eu" name="accept-eu" class="form-control"
+          type="checkbox" style="width: auto; height: auto; display: inline;" disabled data-tooltip="">
+          <span class="tooltip">You must first scroll to the end of the Data Processing Agreement</span>
+          <div class="invalid-feedback"></div>
+        </div>
+
+
+</div>
+
+<div class="row">
 
 <div id="terms-and-conditions" class="agreement-page hidden">
   <div class="overlay"></div>
