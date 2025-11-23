@@ -4,7 +4,7 @@ import $ from 'jquery';
 import User from 'models/user';
 
 import template from './signup.stache';
-
+import "./signup.css";
 
 export default Control.extend({
 
