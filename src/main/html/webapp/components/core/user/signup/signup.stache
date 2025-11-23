@@ -14,32 +14,27 @@
 
 <form id="signon-form" class="form-horizontal" autocomplete="off">
 
-  <div class="col">
+  <div class="col-md-2">
   
-  <div class="form-group">
+  <div class="form-group row">
     <label for="username" class="control-label">Username:</label>
     <input id="username" name="username" type="text" class="form-control col-sm-3" autocomplete="off">
     <div class="invalid-feedback"></div>
   </div>
-
-
-  <div class="form-group">
+  <div class="form-group row">
     <label for="full-name" class="control-label">Full Name:</label>
     <input id="full-name" name="full-name" type="text" class="form-control col-sm-3" autocomplete="off">
     <div class="invalid-feedback"></div>
   </div>
-
   {{#is(emailRequired, true)}}
-
-  <div class="form-group">
+  <div class="form-group row">
     <label for="mail" class="control-label">E-Mail:</label>
     <input id="mail" name="mail" type="text" class="form-control col-sm-3" autocomplete="off">
     <div class="invalid-feedback"></div>
   </div>
-
   {{else}}
     <hr>
-  <div class="form-group">
+  <div class="form-group row">
    <input type="radio" id="anonymous1" name="anonymous" value="0" checked> <label for="anonymous1" class="control-label">E-Mail Address</label>
     <div class="form-group" style="margin-left: 30px;">
       <p>
@@ -59,66 +54,64 @@
      <hr>
   {{/is}}
 
-  <div class="form-group">
+  <div class="form-group row">
     <label for="new-password" class="control-label">Password:</label>
     <input id="new-password" name="new-password" type="password" class="form-control col-sm-3" autocomplete="off">
     <div class="invalid-feedback"></div>
   </div>
-
-  <div class="form-group">
+  <div class="form-group row">
     <label for="confirm-new-password" class="control-label">Confirm password:</label>
     <input id="confirm-new-password" name="confirm-new-password" type="password" class="form-control col-sm-3" autocomplete="off">
     <div class="invalid-feedback"></div>
   </div>
 
-<div class="form-group">
+<div class="form-group row">
 <label for="select-2fa" class="control-label">Enable 2FA using Google Authenticator</label>
 <input id="select-2fa" name="select-2fa" class="form-control" type="checkbox" style="width: auto; height: auto; display: inline;" data-tooltip="">
 <div class="invalid-feedback"></div>
 </div>
 
-
-  <div class="form-group">
+  <div class="form-group row">
     <button id="save" class="btn btn-primary" data-loading-text="please wait...">Register</button>
   </div>
 
 </div> <!-- col -->
 
-      <div class="col">
+      <div class="col-md-2">
       
         <h3>Affiliation details</h3>
-        <div class="form-group">
+        <div class="form-group row">
           <label for="institute-mail" class="control-label">Supervisor or Legal-representative E-Mail:</label>
           <input id="institute-mail" name="institute-mail" type="text" class="form-control col-sm-3" autocomplete="off">
           <div class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group row">
           <label for="institute-name" class="control-label">Institute name:</label>
           <input id="institute-name" name="institute-name" type="text" class="form-control col-sm-3" autocomplete="off">
           <div class="invalid-feedback"></div>
 	</div>
 
-        <div class="form-group">
+        <div class="form-group row">
           <label for="institute-address" class="control-label">Address:</label>
           <input id="institute-address1" name="institute-address1" type="text" class="form-control col-sm-3" autocomplete="off">
           <input id="institute-address2" name="institute-address2" type="text" class="form-control col-sm-3" autocomplete="off">
           <div class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group row">
           <label for="institute-city" class="control-label">City:</label>
           <input id="institute-city" name="institute-city" type="text" class="form-control col-sm-3" autocomplete="off">
           <div class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group row">
           <label for="institute-state" class="control-label">State:</label>
           <input id="institute-state" name="institute-state" type="text" class="form-control col-sm-3" autocomplete="off">
           <div class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group row">
           <label for="institute-postcode" class="control-label">Postal Code:</label>
           <input id="institute-postcode" name="institute-postcode" type="text" class="form-control col-sm-3" autocomplete="off">
           <div class="invalid-feedback"></div>
