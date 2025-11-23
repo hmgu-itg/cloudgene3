@@ -35,11 +35,14 @@
 					<span class="lead" style="font-size: 200%;"><%= Math.round(counter.attr('users')).toLocaleString() %></span><br>Registerd Users
 				</p>
 			</div>
+		{{!--
 			<div class="col-md-3 text-center">
 				<p>
 					<span class="lead" style="font-size: 200%;">> 100</span><br>Published GWAS
 				</p>
 			</div>
+			--}}
+
 		</div>
 	</div>
 </div>
