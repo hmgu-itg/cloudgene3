@@ -10,18 +10,18 @@ import "./signup.css";
 export default Control.extend({
 
     "init": function(element, options) {
-    // var params = {};
-    // Country.findAll(
-    //   params,
-    //   function (countries) {
-    //     $(element).html(template({
-    //       countries: countries
-    //     }));
-    //     $(element).fadeIn();
-    //   },
-    //   function (response) {
-    //     new ErrorPage(element, response);
-    //   });
+    var params = {};
+    Country.findAll(
+      params,
+      function (countries) {
+        $(element).html(template({
+          countries: countries
+        }));
+        $(element).fadeIn();
+      },
+      function (response) {
+        new ErrorPage(element, response);
+      });
 	
     // $(document).on("click", "#tos-view-btn", function () {
     //   $("#terms-and-conditions").removeClass("hidden");
@@ -81,7 +81,7 @@ export default Control.extend({
       userWithoutEmailDescription: options.appState.attr('userWithoutEmailDescription')
     }));
     $(element).fadeIn();
-  },
+    },
 
 
   "#anonymous1 click" : function(){
