@@ -1,8 +1,15 @@
 <h2>Sign up</h2>
 <br>
 
-<div class="alert alert-success" id="success-message" style="display: none;">
+  <div id="sign-up" class="container">
+
+<div class="alert alert-success" id="success-message" style="display: none;"></div>
+
+<div id="QR_div" style="display: none;">
+<label for="QR">Scan this QR code using Google Authenticator app</label>
+<img id="QR" src="" alt="QR" style="display: block; margin: 0 auto"/>
 </div>
+
 
 <form id="signon-form" class="form-horizontal" autocomplete="off">
 
@@ -77,6 +84,7 @@
 </div>
 
       <div class="col">
+      
         <h3>Affiliation details</h3>
         <div class="form-group">
           <label for="institute-mail" class="control-label">Supervisor or Legal-representative E-Mail:</label>
@@ -121,3 +129,5 @@
 </div>
 
 </form>
+
+</div>
