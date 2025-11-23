@@ -32,7 +32,7 @@ export default Control.extend({
     // 		  .appendChild(can.view('newsList',news));
     // 	  });
 News.findAll({}, function(news) {
-    document.getElementById('list')
+    document.getElementById('ID')
         .appendChild(can.view('newsList', {news: news}));
 });
         // News.findAll({}, function(news) {
