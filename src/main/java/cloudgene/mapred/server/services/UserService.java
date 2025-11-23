@@ -471,7 +471,7 @@ public class UserService {
 				    QR=OTPUtil.createQR(GA_url,256,256);
 				    log.info("QR: "+QR);
 				}
-				MailUtil.send(application.getSettings(), mail, subject, body);
+				//MailUtil.send(application.getSettings(), mail, subject, body);
 
 			} else {
 
