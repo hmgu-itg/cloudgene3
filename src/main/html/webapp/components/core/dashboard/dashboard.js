@@ -27,11 +27,14 @@ export default Control.extend({
         //   }));
           // });
 
-	  News.findAll({}, function(news) {
+    // 	  News.findAll({}, function(news) {
+    // document.getElementById('list')
+    // 		  .appendChild(can.view('newsList',news));
+    // 	  });
+News.findAll({}, function(news) {
     document.getElementById('list')
-		  .appendChild(can.view('newsList',news));
-	  });
-
+        .appendChild(can.view('newsList', {news: news}));
+});
         // News.findAll({}, function(news) {
         //   $(element).html(template({
         //     news: news

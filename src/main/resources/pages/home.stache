@@ -59,11 +59,12 @@
 							</p>
 
 							<p>
-							<script type="text/ejs" id="newsList">
-							<% for(var i = 0; i < news.length; ++i) { %>
-							    <li><%= this[i].attr('text') %> </li>
-							    <% } %>
-							    </script>
+
+<script type="text/mustache" id="newsList">
+{{#news}}
+<li>{{text}}</li>
+{{/news}}
+</script>
 							</p>
 {{!--							
 							<p>
