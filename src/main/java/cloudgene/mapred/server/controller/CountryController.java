@@ -11,12 +11,12 @@ import io.micronaut.security.rules.SecurityRule;
 import io.micronaut.security.annotation.Secured;
 import jakarta.inject.Inject;
 
-@Controller("/api/v2/users/countries")
+@Controller
 public class CountryController {
 	@Inject
 	protected CountryService countryService;
 
-	@Get("/")
+	@Get("/api/v2/users/countries")
 	@Secured(SecurityRule.IS_AUTHENTICATED)
 	//@Secured(User.ROLE_ADMIN)
 	public String getAllowedCountries() {
