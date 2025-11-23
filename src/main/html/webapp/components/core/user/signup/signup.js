@@ -82,6 +82,7 @@ export default Control.extend({
       });
     });
 	observer.observe(document.body, { childList: true, subtree: true });
+	console.log(JSON.stringify(observer));
 	
 	this.emailRequired=true;
     //this.emailRequired = options.appState.attr('emailRequired');
