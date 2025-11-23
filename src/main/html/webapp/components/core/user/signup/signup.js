@@ -171,9 +171,9 @@ export default Control.extend({
           // shows success
           var message = "";
           if (!anonymous){
-            message = "Well done!</b> An email including the activation code has been sent to your address."
+            message = "An email including the activation code has been sent to your address."
           } else {
-            message = "<b>Well done!</b> Your account is now active. <a href=\"/\">Login now</a>."
+            message = "Your account is now active. <a href=\"/\">Login now</a>."
           }
 
           $('#signon-form').hide();
