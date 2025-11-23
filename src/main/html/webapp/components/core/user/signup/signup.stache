@@ -103,19 +103,30 @@
 </div>
 
 <div class="row">
-        <div class="form-group col-sm-4">
-          <label for="institute-city" class="control-label">City:</label>
-          <input id="institute-city" name="institute-city" type="text" class="form-control" autocomplete="off">
+        <div class="form-group col-sm-3">
+          <label for="institute-country" class="control-label">Country:</label>
+          <select id="institute-country" name="institute-country" class="form-control">
+            <option value="" selected>Select your country</option>
+            {{#each countries}}
+              <option value="{{name}}">{{name}}</option>
+            {{/each}}
+          </select>
           <div class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <label for="institute-state" class="control-label">State:</label>
           <input id="institute-state" name="institute-state" type="text" class="form-control" autocomplete="off">
           <div class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
+          <label for="institute-city" class="control-label">City:</label>
+          <input id="institute-city" name="institute-city" type="text" class="form-control" autocomplete="off">
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <div class="form-group col-sm-3">
           <label for="institute-postcode" class="control-label">Postal Code:</label>
           <input id="institute-postcode" name="institute-postcode" type="text" class="form-control" autocomplete="off">
           <div class="invalid-feedback"></div>
