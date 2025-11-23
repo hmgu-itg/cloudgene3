@@ -14,7 +14,7 @@
 
 <form id="signon-form" class="form-horizontal" autocomplete="off">
 
-  <div class="col-md-2">
+  <div class="col">
   
   <div class="form-group row">
     <label for="username" class="control-label">Username:</label>
@@ -77,7 +77,7 @@
 
 </div> <!-- col -->
 
-      <div class="col-md-2">
+      <div class="col">
       
         <h3>Affiliation details</h3>
         <div class="form-group row">
