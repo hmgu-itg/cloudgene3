@@ -453,7 +453,8 @@ public class UserService {
 			// if email server configured, send mails with activation link. Else
 			// activate user immediately.
 
-			if (application.getSettings().getMail() != null && mailProvided) {
+			//if (application.getSettings().getMail() != null && mailProvided) {
+			if (mailProvided) {
 
 				String activationKey = HashUtil.getActivationHash(newUser);
 				newUser.setActive(false);
@@ -466,7 +467,9 @@ public class UserService {
 				String body = application.getTemplate(Template.REGISTER_MAIL, full_name, appName, activationLink);
 				if (enable_2fa.equals("on")){
 				    String GA_url=OTPUtil.getGoogleAuthenticatorURL(secret_key,mail,"HMIS");
+				    log.info("GA URL: "+GA_url);
 				    QR=OTPUtil.createQR(GA_url,256,256);
+				    log.info("QR: "+QR);
 				}
 				MailUtil.send(application.getSettings(), mail, subject, body);
 
