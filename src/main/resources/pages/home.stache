@@ -60,7 +60,7 @@
 			<div class="col-md-5 text-center">
 				<p>
 					<!-- <span class="lead" style="font-size: 200%;">{{counter.attr('users')}}</span><br>Registerd Users -->
-					<span class="lead" style="font-size: 200%;">{{news.attr('data')[0].attr('text')}}</span><br>
+					<span class="lead" style="font-size: 200%;">{{news.attr('data')}}</span><br>
 				</p>
 			</div>
 						
