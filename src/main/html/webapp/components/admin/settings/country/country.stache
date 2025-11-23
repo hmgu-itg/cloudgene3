@@ -1,5 +1,6 @@
 <h2>Country</h2>
-<p>This page lists all <b>{{users.count}}</b> registered countries.<br><br></p>
+<!-- <p>This page lists all <b>{{users.count}}</b> registered countries.<br><br></p> -->
+<p>This page lists all registered countries.<br><br></p>
 
 <p>
 	<form id="proband-search-form" class="form-inline">
