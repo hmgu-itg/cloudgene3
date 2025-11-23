@@ -72,8 +72,9 @@ export default Control.extend({
     //     }
     //   });
     // });
-    // observer.observe(document.body, { childList: true, subtree: true });	
-    this.emailRequired = options.appState.attr('emailRequired');
+	// observer.observe(document.body, { childList: true, subtree: true });
+	this.emailRequired=true;
+    //this.emailRequired = options.appState.attr('emailRequired');
     $(element).hide();
     $(element).html(template({
       emailRequired: options.appState.attr('emailRequired'),
@@ -81,8 +82,7 @@ export default Control.extend({
       userWithoutEmailDescription: options.appState.attr('userWithoutEmailDescription')
     }));
     $(element).fadeIn();
-  },
-
+    },
 
   "#anonymous1 click" : function(){
     this.updateEmailControl();

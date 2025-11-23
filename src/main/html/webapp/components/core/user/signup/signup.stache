@@ -28,13 +28,14 @@
     <div class="invalid-feedback"></div>
   </div>
   
-  {{#is(emailRequired, true)}}
+  <!-- {{#is(emailRequired, true)}} -->
   <div class="form-group col-sm-4">
     <label for="mail" class="control-label">E-Mail:</label>
     <input id="mail" name="mail" type="text" class="form-control" autocomplete="off">
     <div class="invalid-feedback"></div>
   </div>
 
+<!--
   {{else}}
     <hr>
   <div class="form-group col-sm-4">
@@ -56,6 +57,7 @@
    </div>
      <hr>
   {{/is}}
+  -->
 </div>
 
 <div class="row">
