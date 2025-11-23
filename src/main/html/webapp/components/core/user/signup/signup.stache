@@ -86,7 +86,7 @@
 
       <div class="col">
       
-        <h3>Affiliation details</h3>
+        <h3>Affiliation details HERE</h3>
         <div class="form-group">
           <label for="institute-mail" class="control-label">Supervisor or Legal-representative E-Mail:</label>
           <input id="institute-mail" name="institute-mail" type="text" class="form-control" autocomplete="off">
