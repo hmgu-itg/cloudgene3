@@ -51,7 +51,7 @@ public class NewsDao extends JdbcDataAccessObject {
 	} catch (SQLException e1) {
 	    log.error("find latest news failed", e1);
 	}
-	return result[0];
+	return result.get(0);
     }
 
     @SuppressWarnings("unchecked")

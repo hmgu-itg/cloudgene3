@@ -40,9 +40,9 @@ public class NewsService {
 	object.put("time",news.getTimestamp());
 	object.put("text",news.getText());
 	jsonArray.add(object);
-        JSONObject object = new JSONObject();
-        object.put("data", jsonArray);
+        JSONObject object1 = new JSONObject();
+        object1.put("data", jsonArray);
 
-        return object.toString();
+        return object1.toString();
     };
 }
