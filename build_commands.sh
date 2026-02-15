@@ -3,6 +3,11 @@
 # /mnt/storage/cloudgene3
 dest_dir=$1
 
+if [[ -z "$dest_dir" ]];then
+    echo "INFO: no destination dir specified; using /mnt/storage/cloudgene3"
+    dest_dir="/mnt/storage/cloudgene3"
+fi
+
 mvn -Dmaven.test.skip=true package
 
 cd ~/repos/cloudgene3/target/cloudgene-3.1.3
