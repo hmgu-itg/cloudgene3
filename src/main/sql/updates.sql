@@ -223,3 +223,12 @@ ALTER TABLE parameter modify `value` varchar(200) NULL;
 
 -- 3.1.4
 ALTER TABLE `user` ADD COLUMN key_2fa varchar(100) NULL DEFAULT NULL;
+
+-- 3.1.5
+create table news (
+	id	    	integer not null auto_increment primary key,
+	news_time	timestamp not null,
+	news_text	varchar(4096) not null
+);
+-- 3.1.6
+ALTER TABLE news CHANGE news_time news_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;

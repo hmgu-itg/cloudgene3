@@ -43,7 +43,42 @@
 </div>
 --}}
 
+<div class="py-5 bg-light">
+	<div class="container  ">
+		<div class="card ">
+			<div class="card-body">
+				<div class="container">
+					<div class="row">
+					<!--	<div class="col-md-5">
+							<h5 style="padding-top: 10px; padding-bottom: 0px; margin-bottom: 10px;">Latest News</h5>
+							<hr style="padding-top: 0px; margin-top: 0px;">
+							<p>
+								<small class="text-muted"><i class="far fa-calendar-alt"></i> 27 June 2017</small><br>
+								Updated pipeline to v1.0.2. Release notes can be found <a href="https://github.com/genepi/imputationserver/releases/tag/1.0.2" target="_blank">here</a>.
+							</p>
+						</div> -->
+			<div class="col-md-5 text-center">
 
+				<p>
+					<!-- <span class="lead" style="font-size: 200%;">{{counter.attr('users')}}</span><br>Registerd Users -->
+					<!-- <span class="lead" style="font-size: 200%;">{{news.attr('data')}}</span><br> -->
+					<ul>
+					{{#news}} 
+					<li>Time:{{time}} </li>
+					<li>Text:{{text}} </li>
+					{{/news}}
+					</ul>
+				</p>
+			</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{!--							
 <!-- News and Logos -->
 <div class="py-5 bg-light">
 	<div class="container  ">
@@ -78,7 +113,6 @@
 								<small class="text-muted"><i class="far fa-calendar-alt"></i> 24 April 2015</small><br>
 								<a target="_blank" href="http://www.haplotype-reference-consortium.org/">HRC release 1</a> (64,976 haplotypes at 39,235,157 SNPs) is now ready for use for HRC consortium members.
 							</p>
-
 						</div>
 
 						<div class="col-md-4">
@@ -94,6 +128,7 @@
 		</div>
 	</div>
 </div>
+--}}
 
 <div class="bg-light py-5" style="margin-top: 0px;">
 	<div class="container  ">

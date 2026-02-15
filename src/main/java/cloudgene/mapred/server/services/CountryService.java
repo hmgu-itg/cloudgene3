@@ -1,12 +1,8 @@
 package cloudgene.mapred.server.services;
 
 import java.util.List;
-//import java.util.Vector;
 
 import cloudgene.mapred.apps.Application;
-// import cloudgene.mapred.apps.ApplicationRepository;
-//import cloudgene.mapred.core.Group;
-//import cloudgene.mapred.core.User;
 import cloudgene.mapred.core.Country;
 import cloudgene.mapred.database.CountryDao;
 import net.sf.json.JSONArray;
@@ -20,7 +16,7 @@ public class CountryService {
 	@Inject
 	protected cloudgene.mapred.server.Application application;
     
-    /* all countries */
+    /* all allowed countries */
     public String getAllCountries() {
         CountryDao dao = new CountryDao(application.getDatabase());
         List<Country> countries = dao.findAll();
