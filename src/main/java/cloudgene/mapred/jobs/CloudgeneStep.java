@@ -118,7 +118,7 @@ public abstract class CloudgeneStep {
 	}
 
 	public void kill() {
-		context.log("Process killed by used.");
+		context.log("Process killed by user.");
 		if (process != null && process.isAlive()) {
 			killed = true;
 			process.destroy();
