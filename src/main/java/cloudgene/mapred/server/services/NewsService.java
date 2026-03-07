@@ -22,6 +22,7 @@ public class NewsService {
         JSONArray jsonArray = new JSONArray();
         for (News n : news) {
                 JSONObject object = new JSONObject();
+		object.put("ID",Integer.toString(news.getId()));
                 object.put("time",n.getTimestamp());
                 object.put("text",n.getText());
                 jsonArray.add(object);
@@ -37,6 +38,7 @@ public class NewsService {
         News news = dao.findLatest();
         JSONArray jsonArray = new JSONArray();
 	JSONObject object = new JSONObject();
+	object.put("ID",Integer.toString(news.getId()));
 	object.put("time",news.getTimestamp());
 	object.put("text",news.getText());
 	jsonArray.add(object);
