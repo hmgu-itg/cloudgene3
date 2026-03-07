@@ -33,6 +33,7 @@ public class NewsController {
 	@Secured(SecurityRule.IS_ANONYMOUS)
 	//@Secured(User.ROLE_ADMIN)
 	public String getNews() {
+	    log.debug("getNews");
 		return newsService.getNews();
 	}
 	@Get("/api/v2/users/latestnews")
