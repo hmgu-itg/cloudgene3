@@ -20,6 +20,20 @@ public class NewsDao extends JdbcDataAccessObject {
 	super(database);
     }
 
+    public boolean deleteAll() {
+	StringBuilder sql = new StringBuilder();
+	sql.append("delete from `news`");
+
+	try {
+	    int id=update(sql.toString());
+	} catch (SQLException e) {
+	    log.error("delete news failed: "+e);
+	    return false;
+	}
+	return true;
+    }
+
+    //TODO: return false if given ID does not exist in "news"
     public boolean delete(int ID) {
 	StringBuilder sql = new StringBuilder();
 	sql.append("delete from `news` ");
