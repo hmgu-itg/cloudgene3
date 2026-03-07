@@ -20,6 +20,22 @@ public class NewsDao extends JdbcDataAccessObject {
 	super(database);
     }
 
+    public boolean delete(int ID) {
+	StringBuilder sql = new StringBuilder();
+	sql.append("delete from `news` ");
+	sql.append("where id = ?");
+
+	try {
+	    Object[] params=new Object[1];
+	    params[0]=ID;
+	    int id = update(sql.toString(),params);
+	} catch (SQLException e) {
+	    log.error("delete news failed: "+e);
+	    return false;
+	}
+	return true;
+    }
+
     public boolean insert(News n) {
 	StringBuilder sql = new StringBuilder();
 	sql.append("insert into `news` (news_text) ");
@@ -30,6 +46,7 @@ public class NewsDao extends JdbcDataAccessObject {
 	    params[0] = n.getText();
 	    int id = insert(sql.toString(), params);
 	} catch (SQLException e) {
+	    log.error("insert news failed: "+e);
 	    return false;
 	}
 	return true;
