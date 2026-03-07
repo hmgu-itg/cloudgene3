@@ -23,6 +23,9 @@ public class NewsController {
 	@Inject
 	protected NewsService newsService;
 
+	@Inject
+	protected AuthenticationService authenticationService;
+
 	@Post("/api/v2/users/deleteallnews")
 	@Secured(User.ROLE_ADMIN)
 	public boolean deleteAllNews(Authentication authentication) {
