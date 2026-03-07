@@ -54,7 +54,7 @@
 							<hr style="padding-top: 0px; margin-top: 0px;">
 							{{#news}} 
 							<p>
-							<small class="text-muted"><i class="far fa-calendar-alt"></i>{{date}}</small><br>
+							<small class="text-muted"><i class="far fa-calendar-alt"></i> {{date}}</small><br>
 							{{text}}
 							</p>
 							{{/news}}
