@@ -10,9 +10,13 @@ import io.micronaut.http.MediaType;
 import io.micronaut.security.rules.SecurityRule;
 import io.micronaut.security.annotation.Secured;
 import jakarta.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class NewsController {
+	private static Logger log = LoggerFactory.getLogger(NewsController.class);
+    
 	@Inject
 	protected NewsService newsService;
 
@@ -22,6 +26,7 @@ public class NewsController {
 	//TODO: only allow admin to add/delete news
 	//@Secured(User.ROLE_ADMIN)
 	public boolean addNews( @Parameter("text") String  text) {
+	    log.debug("addNews with text="+text);
 		return newsService.addNews(text);
 	}
 	@Get("/api/v2/users/news")
