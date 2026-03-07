@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import cloudgene.mapred.core.User;
 import io.micronaut.security.authentication.Authentication;
+import cloudgene.mapred.server.auth.AuthenticationService;
 
 @Controller
 public class NewsController {
