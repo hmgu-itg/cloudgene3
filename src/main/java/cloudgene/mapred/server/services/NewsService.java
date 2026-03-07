@@ -16,6 +16,13 @@ public class NewsService {
 	@Inject
 	protected cloudgene.mapred.server.Application application;
     
+    public boolean addNews(String text) {
+	News n=new News();
+	n.setText(text);
+        NewsDao dao = new NewsDao(application.getDatabase());
+        return dao.insert(n);
+    };
+    
     public String getNews() {
         NewsDao dao = new NewsDao(application.getDatabase());
         List<News> news = dao.findAll();
