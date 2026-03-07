@@ -54,7 +54,7 @@
 							<hr style="padding-top: 0px; margin-top: 0px;">
 							{{#news}} 
 							<p>
-							<small class="text-muted"><i class="far fa-calendar-alt"></i>{{time}}</small><br>
+							<small class="text-muted"><i class="far fa-calendar-alt"></i>new Date({{time}}).toDateString()</small><br>
 							{{text}}
 							</p>
 							{{/news}}

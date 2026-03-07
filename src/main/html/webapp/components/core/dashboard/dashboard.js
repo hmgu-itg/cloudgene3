@@ -9,7 +9,7 @@ export default Control.extend({
 
   "init": function(element, options) {
       var url = 'static/home.stache';
-      console.log("In dashboard.js");
+      // console.log("In dashboard.js");
     $.get(url,
       function(data) {
 
