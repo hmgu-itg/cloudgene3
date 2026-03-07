@@ -16,6 +16,11 @@ public class NewsService {
 	@Inject
 	protected cloudgene.mapred.server.Application application;
     
+    public boolean deleteNews(int ID) {
+        NewsDao dao = new NewsDao(application.getDatabase());
+        return dao.delete(ID);
+    };
+    
     public boolean addNews(String text) {
 	News n=new News();
 	n.setText(text);
