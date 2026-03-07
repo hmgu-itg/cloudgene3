@@ -3,7 +3,7 @@ package cloudgene.mapred.server.controller;
 import cloudgene.mapred.server.services.NewsService;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.context.annotation.Parameter;
-import io.micronaut.context.annotation.Consumes;
+import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.security.rules.SecurityRule;
 import io.micronaut.security.annotation.Secured;
