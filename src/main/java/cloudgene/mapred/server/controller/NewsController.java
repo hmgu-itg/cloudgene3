@@ -20,7 +20,7 @@ public class NewsController {
 	@Inject
 	protected NewsService newsService;
 
-	@Post("/api/v2/users/addnews")
+	@Post("/api/v2/users/addnews/{text}")
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Secured(SecurityRule.IS_ANONYMOUS)
 	//TODO: only allow admin to add/delete news
