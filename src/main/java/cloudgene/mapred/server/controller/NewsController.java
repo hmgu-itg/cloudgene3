@@ -13,6 +13,7 @@ import jakarta.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import cloudgene.mapred.core.User;
+import io.micronaut.security.authentication.Authentication;
 
 @Controller
 public class NewsController {
@@ -22,39 +23,34 @@ public class NewsController {
 	protected NewsService newsService;
 
 	@Post("/api/v2/users/deleteallnews")
-	//@Secured(SecurityRule.IS_ANONYMOUS)
 	@Secured(User.ROLE_ADMIN)
-	public boolean deleteAllNews() {
+	public boolean deleteAllNews(Authentication authentication) {
 	    return newsService.deleteAllNews();
 	}
 
 	@Post("/api/v2/users/deletenews/{ID}")
 	@Consumes(MediaType.TEXT_PLAIN)
-	//@Secured(SecurityRule.IS_ANONYMOUS)
 	@Secured(User.ROLE_ADMIN)
-	public boolean deleteNews(String ID) {
+	public boolean deleteNews(Authentication authentication,String ID) {
 	    return newsService.deleteNews(Integer.parseInt(ID));
 	}
 
 	@Post("/api/v2/users/addnews/{text}")
 	@Consumes(MediaType.TEXT_PLAIN)
-	//@Secured(SecurityRule.IS_ANONYMOUS)
 	@Secured(User.ROLE_ADMIN)
-	public boolean addNews(String text) {
+	public boolean addNews(Authentication authentication,String text) {
 	    // log.info("addNews with text="+text);
 		return newsService.addNews(text);
 	}
 
 	@Get("/api/v2/users/news")
 	@Secured(SecurityRule.IS_ANONYMOUS)
-	//@Secured(User.ROLE_ADMIN)
 	public String getNews() {
-	    // log.info("getNews");
 		return newsService.getNews();
 	}
+
 	@Get("/api/v2/users/latestnews")
 	@Secured(SecurityRule.IS_ANONYMOUS)
-	//@Secured(User.ROLE_ADMIN)
 	public String getLatestNews() {
 		return newsService.getLatestNews();
 	}
