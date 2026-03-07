@@ -1,18 +1,22 @@
 package cloudgene.mapred.server.services;
 
 import java.util.List;
-
 import cloudgene.mapred.apps.Application;
 import cloudgene.mapred.core.News;
 import cloudgene.mapred.database.NewsDao;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
 public class NewsService {
+	private static Logger log = LoggerFactory.getLogger(NewsService.class);
 	@Inject
 	protected cloudgene.mapred.server.Application application;
     
@@ -37,15 +41,21 @@ public class NewsService {
         NewsDao dao = new NewsDao(application.getDatabase());
         List<News> news = dao.findAll();
         JSONArray jsonArray = new JSONArray();
-        for (News n : news) {
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat formatter2 = new SimpleDateFormat("MMMM dd, yyyy");
+	try {
+	    for (News n : news) {
                 JSONObject object = new JSONObject();
 		object.put("ID",Integer.toString(n.getId()));
-                object.put("time",n.getTimestamp());
+		String ts=n.getTimestamp();
+                object.put("time",ts);
+                object.put("date",formatter2.format(formatter.parse(ts)));
                 object.put("text",n.getText());
                 jsonArray.add(object);
+	    }
+        } catch (ParseException e) {
+            log.error("Invalid date format: "+e);
         }
-        // JSONObject object = new JSONObject();
-        // object.put("data", jsonArray);
 
         return jsonArray.toString();
     };
