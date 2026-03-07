@@ -25,7 +25,8 @@ public class NewsController {
 	@Secured(SecurityRule.IS_ANONYMOUS)
 	//TODO: only allow admin to add/delete news
 	//@Secured(User.ROLE_ADMIN)
-	public boolean addNews( @Parameter("text") String  text) {
+	//public boolean addNews( @Parameter("text") String  text) {
+	public boolean addNews(String text) {
 	    log.info("addNews with text="+text);
 		return newsService.addNews(text);
 	}
