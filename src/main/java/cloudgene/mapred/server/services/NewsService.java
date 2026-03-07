@@ -21,6 +21,11 @@ public class NewsService {
         return dao.delete(ID);
     };
     
+    public boolean deleteAllNews() {
+        NewsDao dao = new NewsDao(application.getDatabase());
+        return dao.deleteAll();
+    };
+    
     public boolean addNews(String text) {
 	News n=new News();
 	n.setText(text);
