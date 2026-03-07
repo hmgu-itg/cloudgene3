@@ -39,7 +39,8 @@ public class NewsController {
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Secured(User.ROLE_ADMIN)
 	public boolean addNews(Authentication authentication,String text) {
-	    // log.info("addNews with text="+text);
+		User admin = authenticationService.getUserByAuthentication(authentication);
+	        log.info("addNews with text="+text+"\n"+admin.getId()+" "+admin.getMail());
 		return newsService.addNews(text);
 	}
 
