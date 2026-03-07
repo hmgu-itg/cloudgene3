@@ -6,6 +6,7 @@ import io.micronaut.context.annotation.Parameter;
 import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.http.MediaType;
 import io.micronaut.security.rules.SecurityRule;
 import io.micronaut.security.annotation.Secured;
 import jakarta.inject.Inject;
