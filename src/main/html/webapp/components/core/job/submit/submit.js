@@ -193,7 +193,10 @@ export default Control.extend({
 	// console.log(cs_selector.value);
 	
 	//var MAX_CHUNK_SIZE=cs_mapping[cs_selector.value];
-	var MAX_CHUNK_SIZE=1073741824;
+	// 1GB
+	//var MAX_CHUNK_SIZE=1073741824;
+	// 1MB
+	var MAX_CHUNK_SIZE=1048576;
 	var total_size=0;
 	var n_chunks=0;
       
