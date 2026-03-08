@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import cloudgene.mapred.database.ParameterDao;
@@ -28,6 +29,16 @@ import genepi.io.FileUtil;
 import io.micronaut.http.HttpStatus;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.FileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Singleton
 public class JobService {
@@ -177,6 +188,95 @@ public class JobService {
 		}
 	}
 
+    private boolean mergeFileList(List <String> files,String output){
+	log.info("Merging "+files+" to "+output);
+	try{
+	    DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(new File(output))));
+	    for (String fname: files.stream().sorted().collect(Collectors.toList())){
+		log.info("File: "+fname);
+		try{
+		    byte fileBytes [] = FileUtils.readFileToByteArray(new File(fname));
+		    out.write(fileBytes);
+		    out.flush();
+		}
+		catch (IOException ex){
+		    log.error(ex.toString());
+		    return false;
+		}
+	    }
+	    try{
+		out.close();
+		log.info("");
+	    }
+	    catch (IOException ex){
+		log.error(ex.toString());
+		return false;
+	    }
+	}
+	catch (FileNotFoundException ex){
+	    log.error(ex.toString());
+	    return false;
+	}
+	return true;
+    }
+    
+    private boolean mergeFileParts(String dir){
+	File D=new File(dir);
+	FileFilter fileFilter = new WildcardFileFilter("*.vcf.gz.part*");
+	File flist [] = D.listFiles(fileFilter);
+	log.info("Found "+flist.length+" files matching *.vcf.gz.part*");
+	for(File file : flist) {
+	    log.info("File name: "+file.getName());
+	}
+	log.info("");
+	Pattern pattern = Pattern.compile("(.*)\\.vcf\\.gz\\.part\\d+$");
+	Map<String, List<String>> M = new HashMap<String, List<String>>();
+	for (File f:flist){
+	    Matcher matcher = pattern.matcher(f.getName());
+	    while (matcher.find()) {
+		String p=matcher.group(1);
+		if (!M.containsKey(p)) {
+		    M.put(p, new ArrayList<String>());
+		}
+		M.get(p).add(f.getAbsolutePath());
+		log.info(p+" : "+f.getName());
+	    }
+	}
+	for (Map.Entry<String, List <String>> entry: M.entrySet()){
+	    log.info(entry.getKey()+" -- "+entry.getValue());
+	    mergeFileList(entry.getValue(),FileUtil.path(dir,entry.getKey()+".vcf.gz"));	    
+	}
+	// delete all *part* files
+	for (File f: flist){
+	    if (f.delete())
+		log.info("Deleted "+f.getName());
+	    else
+		log.error("Deleting "+f.getName()+" failed");
+	}
+	// report MD5 sums
+	// log.info("Saving MD5 checksums of the input files");
+	// try{
+	//     MessageDigest mdigest = MessageDigest.getInstance("MD5");
+	//     fileFilter = new WildcardFileFilter("*.vcf.gz");
+	//     flist = D.listFiles(fileFilter);
+	//     log.info("Found "+flist.length+" files matching *.vcf.gz");
+	//     for(File file : flist) {
+	// 	try{
+	// 	    log.info("checksum: "+file.getName()+" "+checksum(mdigest,file));
+	// 	}catch (IOException ex) {
+	// 	    log.error(ex.toString());
+	// 	}
+	// 	log.info("");
+	//     }
+	// }catch (NoSuchAlgorithmException ex) {
+	//     log.error(ex.toString());
+	//     return false;
+	// }
+
+	return true;
+    }
+
+    
 	public Page<AbstractJob> getAllByUserAndPage(User user, Integer page, int pageSize) {
 
 		int offset = 0;
