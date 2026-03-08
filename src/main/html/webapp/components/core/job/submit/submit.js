@@ -78,7 +78,7 @@ function createFormData(form,cc,nc,chunks,uploads,width){
 
 //--------------
 
-function sendChunks(F,nc,uploads,chunks,token,UD){
+function sendChunks(F,nc,uploads,chunks,token,accesstk,UD){
     let promise=Promise.resolve();
     let new_loc;
     
@@ -96,7 +96,7 @@ function sendChunks(F,nc,uploads,chunks,token,UD){
     // custom errors from SubmitJob.post have JSON data
     // errors from proxy server have HTML data
     for (let i=0;i<nc;i++){
-	promise=promise.then(()=>fetch(F.action,{headers:{"X-CSRF-Token":token},method:"post",body:createFormData(F,i,nc,chunks,uploads,width)}).then(response => {if (!response.ok){console.log("RESPONSE NOT OK i="+i+" status="+response.status);UD.modal('hide');return response.text().then(text => {let z=true;let x=null;try {x=JSON.parse(text);console.log("message: "+x.message);} catch(err){z=false;}if (z){throw new Error(x.message,{cause:response.status});}else{throw new Error(response.statusText,{cause:response.status});} } )}return response.text();}).then(data => {console.log("i: "+i+" DATA: "+data);console.log("i: "+i+" Received ID: "+JSON.parse(data).id); if (i==nc-1){$("#waiting-progress").css("width",100 + "%");UD.modal('hide');new_loc='#!jobs/'+JSON.parse(data).id;console.log("new location: "+new_loc);window.location.href=new_loc;} else {$("#waiting-progress").css("width",(i/(nc-1))*100 + "%");add_input("jobid",JSON.parse(data).id,F);add_input("lws",JSON.parse(data).lws,F);add_input("hws",JSON.parse(data).hws,F);}}));
+	promise=promise.then(()=>fetch(F.action,{headers:{"X-CSRF-Token":token,"X-Auth-Token":accesstk},method:"post",body:createFormData(F,i,nc,chunks,uploads,width)}).then(response => {if (!response.ok){console.log("RESPONSE NOT OK i="+i+" status="+response.status);UD.modal('hide');return response.text().then(text => {let z=true;let x=null;try {x=JSON.parse(text);console.log("message: "+x.message);} catch(err){z=false;}if (z){throw new Error(x.message,{cause:response.status});}else{throw new Error(response.statusText,{cause:response.status});} } )}return response.text();}).then(data => {console.log("i: "+i+" DATA: "+data);console.log("i: "+i+" Received ID: "+JSON.parse(data).id); if (i==nc-1){$("#waiting-progress").css("width",100 + "%");UD.modal('hide');new_loc='#!jobs/'+JSON.parse(data).id;console.log("new location: "+new_loc);window.location.href=new_loc;} else {$("#waiting-progress").css("width",(i/(nc-1))*100 + "%");add_input("jobid",JSON.parse(data).id,F);add_input("lws",JSON.parse(data).lws,F);add_input("hws",JSON.parse(data).hws,F);}}));
     }
     promise.catch((error) => {UD.modal('hide');console.log("caught error: "+error);new ErrorPage("#content",{"status":error.cause,"responseText":error.message});}) 
 }
@@ -223,11 +223,13 @@ export default Control.extend({
 	console.log("chunks: "+n_chunks);
 	
 	var csrfToken;
+	var accessToken;
 	if (localStorage.getItem("cloudgene")) {
             try {
 		// get data
 		var data = JSON.parse(localStorage.getItem("cloudgene"));	    
 		csrfToken = data.csrf;
+                accessToken = data.token;
             } catch (e) {
 		//do nothing.
             }
@@ -252,7 +254,7 @@ export default Control.extend({
 		shown: false
 	    });
 	    uploadDialog.on('shown.bs.modal', function() {	
-		sendChunks(form,n_chunks,fileUpload,R2,csrfToken,uploadDialog);
+		sendChunks(form,n_chunks,fileUpload,R2,csrfToken,accessToken,uploadDialog);
 	    });
 	    console.log("Show upload window");
 	    uploadDialog.modal("show");
