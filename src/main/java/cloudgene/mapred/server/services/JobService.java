@@ -118,17 +118,28 @@ public class JobService {
 		    throw new JsonHttpStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 
-		String id = createId();
+		String total_chunks=tmp_params.get("total_chunks");
+		String cur_chunk=tmp_params.get("cur_chunk");
+		String jobid=tmp_params.get("jobid");
+		log.debug("jobid="+jobid);
+		log.debug("total_chunks="+total_chunks);
+		log.debug("cur_chunk="+cur_chunk);
+		String id=jobid;
+		boolean need_WS=false;
+		if (id.equals("NA")){
+		    id = createId();
+		    need_WS=true;
+		}
+		log.debug("id="+id);
 
 		Map<String, String> inputParams = null;
-
 		IWorkspace workspace = workspaceFactory.getDefault();
-
 		try {
-
 			// setup workspace
 			workspace.setJob(id);
-			workspace.setup();
+			if (need_WS){
+			    workspace.setup();
+			}
 
 			// parse input params
 			inputParams = JobParameterParser.parse(form, app, workspace);
@@ -143,24 +154,27 @@ public class JobService {
 			name = jobName;
 		}
 
-		// TODO: remove and solve via workspace!
-		String localWorkspace = FileUtil.path(settings.getLocalWorkspace(), id);
-		FileUtil.createDirectory(localWorkspace);
-
-		CloudgeneJob job = new CloudgeneJob(user, id, app, inputParams);
-		job.setId(id);
-		job.setName(name);
-		job.setLocalWorkspace(localWorkspace);
-		job.setWorkspace(workspace);
-		job.setSettings(settings);
-		job.setApplication(app.getName() + " " + app.getVersion());
-		job.setApplicationId(appId);
-		job.setUserAgent(userAgent);
-
-		engine.submit(job);
-
-		return job;
-
+		if (cur_chunk.equals(total_chunks)){
+		    // TODO: remove and solve via workspace!
+		    String localWorkspace = FileUtil.path(settings.getLocalWorkspace(), id);
+		    FileUtil.createDirectory(localWorkspace);
+		    CloudgeneJob job = new CloudgeneJob(user, id, app, inputParams);
+		    job.setId(id);
+		    job.setName(name);
+		    job.setLocalWorkspace(localWorkspace);
+		    job.setWorkspace(workspace);
+		    job.setSettings(settings);
+		    job.setApplication(app.getName() + " " + app.getVersion());
+		    job.setApplicationId(appId);
+		    job.setUserAgent(userAgent);
+		    engine.submit(job);
+		    return job;
+		}
+		else{
+		    CloudgeneJob job=new CloudgeneJob();
+		    job.setId("temp_"+cur_chunk+"_"+total_chunks+"_"+id);
+		    return job;
+		}
 	}
 
 	public Page<AbstractJob> getAllByUserAndPage(User user, Integer page, int pageSize) {
