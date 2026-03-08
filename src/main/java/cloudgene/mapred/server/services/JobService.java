@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -39,6 +40,8 @@ import java.io.FileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.commons.io.FileUtils;
+import java.util.stream.Collectors;
 
 @Singleton
 public class JobService {
@@ -170,8 +173,8 @@ public class JobService {
 		    String localWorkspace = FileUtil.path(settings.getLocalWorkspace(), id);
 		    FileUtil.createDirectory(localWorkspace);
 		    mergeFileParts(inputParams.get("files"));
-		    logger.debug("files: "+inputParams.get("files"));
-		    logger.debug("localWorkspace: "+localWorkspace);
+		    log.debug("files: "+inputParams.get("files"));
+		    log.debug("localWorkspace: "+localWorkspace);
 		    CloudgeneJob job = new CloudgeneJob(user, id, app, inputParams);
 		    job.setId(id);
 		    job.setName(name);
