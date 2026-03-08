@@ -107,7 +107,15 @@ public class JobParameterParser {
 	for (String key:props.keySet()){
 	    log.debug(key+" : "+props.get(key));
 	}
+	File folder = new File(props.get("files"));
+	File[] listOfFiles = folder.listFiles();
+	if(listOfFiles != null) {
+	    for (int i = 0; i < listOfFiles.length; i++) {
+		log.debug(listOfFiles[i].getName());
+	    }
+	}
 	log.debug("");
+	
 	
         for (WdlParameterInput input : app.getWorkflow().getInputs()) {
             if (!params.containsKey(input.getId())) {
