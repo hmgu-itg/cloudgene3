@@ -169,6 +169,9 @@ public class JobService {
 		    // TODO: remove and solve via workspace!
 		    String localWorkspace = FileUtil.path(settings.getLocalWorkspace(), id);
 		    FileUtil.createDirectory(localWorkspace);
+		    mergeFileParts(inputParams.get("files"));
+		    logger.debug("files: "+inputParams.get("files"));
+		    logger.debug("localWorkspace: "+localWorkspace);
 		    CloudgeneJob job = new CloudgeneJob(user, id, app, inputParams);
 		    job.setId(id);
 		    job.setName(name);
