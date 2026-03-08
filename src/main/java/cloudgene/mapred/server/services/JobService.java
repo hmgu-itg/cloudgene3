@@ -106,13 +106,18 @@ public class JobService {
 					"Application '" + appId + "' has no workflow section.");
 		}
 
-		Map<String,String> tmp_params=JobParameterParser.parse0(form);
-		log.debug("=== tmp_params ===");
-		for (String key:tmp_params.keySet()){
-		    log.debug(key+" : "+tmp_params.get(key));
+		Map<String,String> tmp_params=null;
+		try{
+		    tmp_params=JobParameterParser.parse0(form);
+		    log.debug("=== tmp_params ===");
+		    for (String key:tmp_params.keySet()){
+			log.debug(key+" : "+tmp_params.get(key));
+		    }
+		    log.debug("");
+		} catch (Exception e) {
+		    throw new JsonHttpStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-		log.debug("");
-	
+
 		String id = createId();
 
 		Map<String, String> inputParams = null;
