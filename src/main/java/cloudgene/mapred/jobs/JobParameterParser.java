@@ -62,12 +62,9 @@ public class JobParameterParser {
                 throw new Exception("Parameter '" + key + "' not found.");
             }
 
-            if (value instanceof File inputFile) {
-
+            if (value instanceof File inputFile){
                 log.debug("Parameter " + key + " is a file.");
-
                 try {
-
                     // copy to workspace in input directory
                     long start = System.currentTimeMillis();
                     log.debug("Upload file " + inputFile.getAbsolutePath() + " to workspace...");
@@ -80,21 +77,14 @@ public class JobParameterParser {
                         // file
                         props.put(key, target);
                     }
-
                 } finally {
                     FileUtil.deleteFile(inputFile.getAbsolutePath());
                 }
-
                 log.debug("Parameter " + key + " processed." );
-
             } else {
-
                 log.debug("Parameter " + key + " is a value parameter.");
-
                 String cleanedValue = StringEscapeUtils.escapeHtml(value.toString());
-
                 if (input.getWriteFile() != null && !input.getWriteFile().trim().isEmpty()) {
-
                     File file = Files.createTempFile("upload_", input.getWriteFile()).toFile();
                     try {
                         FileUtil.writeStringBufferToFile(file.getAbsolutePath(), new StringBuffer(cleanedValue));
@@ -104,18 +94,29 @@ public class JobParameterParser {
                     }finally {
                         file.delete();
                     }
-
                 }
 
                 if (!props.containsKey(key)) {
                     // don't override uploaded files
                     props.put(key, cleanedValue);
                 }
-
             }
-
         }
 
+	log.debug("=== PROPS ===");
+	for (String key:props.keySet()){
+	    log.debug(key+" : "+props.get(key));
+	}
+	File folder = new File(props.get("files"));
+	File[] listOfFiles = folder.listFiles();
+	if(listOfFiles != null) {
+	    for (int i = 0; i < listOfFiles.length; i++) {
+		log.debug(listOfFiles[i].getName());
+	    }
+	}
+	log.debug("");
+	
+	
         for (WdlParameterInput input : app.getWorkflow().getInputs()) {
             if (!params.containsKey(input.getId())) {
                 if (props.containsKey(input.getId())) {
@@ -150,6 +151,45 @@ public class JobParameterParser {
         params.put(PARAM_JOB_NAME, props.get(PARAM_JOB_NAME));
 
         return params;
+    }
+
+    public static Map<String, String> parse0(List<FormUtil.Parameter> form)
+            throws Exception {
+        Map<String, String> props = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<String, String>();
+
+        // uploaded files
+
+        for (FormUtil.Parameter formParam : form) {
+            String name = formParam.getName();
+            Object value = formParam.getValue();
+            if (value instanceof File inputFile){
+		continue;
+	    }
+	    
+            // remove upload indentification!
+            String key = StringEscapeUtils.escapeHtml(name);
+            if (key.startsWith("input-")) {
+                key = key.replace("input-", "");
+            }
+	    log.debug("Parameter " + key + " is a value parameter.");
+
+            log.debug("Process parameter " + key + "...");
+            if (key.equals(PARAM_JOB_NAME) || key.endsWith("-pattern")) {
+                String cleanedValue = StringEscapeUtils.escapeHtml(value.toString());
+                props.put(key, cleanedValue);
+                log.debug("Parameter " + key + " ignored.");
+                continue;
+            }
+
+	    String cleanedValue = StringEscapeUtils.escapeHtml(value.toString());
+
+	    if (!props.containsKey(key)) {
+		props.put(key, cleanedValue);
+	    }
+        }
+
+        return props;
     }
 
     private static WdlParameterInput getInputParamByName(WdlApp app, String name) {

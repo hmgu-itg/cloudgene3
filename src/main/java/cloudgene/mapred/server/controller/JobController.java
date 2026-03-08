@@ -98,39 +98,38 @@ public class JobController {
 
 			@Override
 			public HttpResponse<Object> apply(List<Parameter> form) {
-
 				log.debug("Multi part parsed in " + (System.currentTimeMillis() - start) + " ms.");
-
-				User user = authenticationService.getUserByAuthentication(authentication,
-						AuthenticationType.ALL_TOKENS);
-
+				User user = authenticationService.getUserByAuthentication(authentication,AuthenticationType.ALL_TOKENS);
 				try {
-
 					blockInMaintenanceMode(user);
-
 					AbstractJob job = jobService.submitJob(app, form, user, userAgent);
-
-					log.debug("Job " + job.getId() + " submitted in " + (System.currentTimeMillis() - start) + " ms.");
-
-					String message = String.format("Job: Created job ID %s for user %s (ID %s - email %s)", user.getId(),
-							user.getUsername(), user.getId(), user.getMail());
-					if (user.isAccessedByApi()) {
-						message += " (via API token)";
+					if (job.getId().startsWith("temp_")){
+					    String[] ar=job.getId().split("_");
+					    String message = String.format("Waiting for further chunks to arrive: "+ar[1]+"/"+ar[2]);
+					    log.info(message);
+					    return HttpResponse.ok(ResponseObject.build(ar[3],message,true));
 					}
-					log.info(message);
-
-					message = "Your job was successfully added to the job queue.";
-					return HttpResponse.ok(ResponseObject.build(job.getId(), message, true));
+					else{
+					    log.debug("Job " + job.getId() + " submitted in " + (System.currentTimeMillis() - start) + " ms.");
+					    String message = String.format("Job: Created job ID %s for user %s (ID %s - email %s)", job.getId(),
+									   user.getUsername(), user.getId(), user.getMail());
+					    if (user.isAccessedByApi()) {
+						message += " (via API token)";
+					    }
+					    log.info(message);
+					    message = "Your job was successfully added to the job queue.";
+					    return HttpResponse.ok(ResponseObject.build(job.getId(), message, true));
+					}
 				} catch (JsonHttpStatusException e) {
 					return HttpResponse.status(e.getStatus()).body(e.getObject());
 				} catch (Exception e) {
 					return HttpResponse.status(HttpStatus.BAD_REQUEST).body(e.toString());
 				} finally {
 					folder.delete();
-					log.debug("Deletes folder " + folder.getAbsolutePath() + ".");
+					log.debug("Delete folder " + folder.getAbsolutePath());
 				}
 			}
-		});
+		    });
 	}
 
 
