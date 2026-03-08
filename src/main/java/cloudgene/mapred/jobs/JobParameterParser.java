@@ -62,12 +62,9 @@ public class JobParameterParser {
                 throw new Exception("Parameter '" + key + "' not found.");
             }
 
-            if (value instanceof File inputFile) {
-
+            if (value instanceof File inputFile){
                 log.debug("Parameter " + key + " is a file.");
-
                 try {
-
                     // copy to workspace in input directory
                     long start = System.currentTimeMillis();
                     log.debug("Upload file " + inputFile.getAbsolutePath() + " to workspace...");
@@ -80,21 +77,14 @@ public class JobParameterParser {
                         // file
                         props.put(key, target);
                     }
-
                 } finally {
                     FileUtil.deleteFile(inputFile.getAbsolutePath());
                 }
-
                 log.debug("Parameter " + key + " processed." );
-
             } else {
-
                 log.debug("Parameter " + key + " is a value parameter.");
-
                 String cleanedValue = StringEscapeUtils.escapeHtml(value.toString());
-
                 if (input.getWriteFile() != null && !input.getWriteFile().trim().isEmpty()) {
-
                     File file = Files.createTempFile("upload_", input.getWriteFile()).toFile();
                     try {
                         FileUtil.writeStringBufferToFile(file.getAbsolutePath(), new StringBuffer(cleanedValue));
@@ -104,18 +94,21 @@ public class JobParameterParser {
                     }finally {
                         file.delete();
                     }
-
                 }
 
                 if (!props.containsKey(key)) {
                     // don't override uploaded files
                     props.put(key, cleanedValue);
                 }
-
             }
-
         }
 
+	log.debug("=== PROPS ===");
+	for (String key:props.keySet()){
+	    log.debug(key+" : "+props.get(key));
+	}
+	log.debug("");
+	
         for (WdlParameterInput input : app.getWorkflow().getInputs()) {
             if (!params.containsKey(input.getId())) {
                 if (props.containsKey(input.getId())) {
