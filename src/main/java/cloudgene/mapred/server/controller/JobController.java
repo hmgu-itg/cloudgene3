@@ -98,27 +98,18 @@ public class JobController {
 
 			@Override
 			public HttpResponse<Object> apply(List<Parameter> form) {
-
 				log.debug("Multi part parsed in " + (System.currentTimeMillis() - start) + " ms.");
-
-				User user = authenticationService.getUserByAuthentication(authentication,
-						AuthenticationType.ALL_TOKENS);
-
+				User user = authenticationService.getUserByAuthentication(authentication,AuthenticationType.ALL_TOKENS);
 				try {
-
 					blockInMaintenanceMode(user);
-
 					AbstractJob job = jobService.submitJob(app, form, user, userAgent);
-
 					log.debug("Job " + job.getId() + " submitted in " + (System.currentTimeMillis() - start) + " ms.");
-
-					String message = String.format("Job: Created job ID %s for user %s (ID %s - email %s)", user.getId(),
+					String message = String.format("Job: Created job ID %s for user %s (ID %s - email %s)", job.getId(),
 							user.getUsername(), user.getId(), user.getMail());
 					if (user.isAccessedByApi()) {
 						message += " (via API token)";
 					}
 					log.info(message);
-
 					message = "Your job was successfully added to the job queue.";
 					return HttpResponse.ok(ResponseObject.build(job.getId(), message, true));
 				} catch (JsonHttpStatusException e) {
@@ -127,10 +118,10 @@ public class JobController {
 					return HttpResponse.status(HttpStatus.BAD_REQUEST).body(e.toString());
 				} finally {
 					folder.delete();
-					log.debug("Deletes folder " + folder.getAbsolutePath() + ".");
+					log.debug("Delete folder " + folder.getAbsolutePath());
 				}
 			}
-		});
+		    });
 	}
 
 
