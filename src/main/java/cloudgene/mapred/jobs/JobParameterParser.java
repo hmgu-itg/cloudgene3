@@ -166,6 +166,11 @@ public class JobParameterParser {
             if (value instanceof File inputFile){
 		continue;
 	    }
+            // remove upload indentification!
+            String key = StringEscapeUtils.escapeHtml(name);
+            if (key.startsWith("input-")) {
+                key = key.replace("input-", "");
+            }
 	    log.debug("Parameter " + key + " is a value parameter.");
 	    
             // remove upload indentification!
@@ -180,12 +185,6 @@ public class JobParameterParser {
                 props.put(key, cleanedValue);
                 log.debug("Parameter " + key + " ignored.");
                 continue;
-            }
-
-            WdlParameterInput input = getInputParamByName(app, key);
-            if (input == null) {
-                log.error("Parameter " + key + " not found in wdl application.");
-                throw new Exception("Parameter '" + key + "' not found.");
             }
 
 	    String cleanedValue = StringEscapeUtils.escapeHtml(value.toString());
