@@ -166,18 +166,13 @@ public class JobParameterParser {
             if (value instanceof File inputFile){
 		continue;
 	    }
-            // remove upload indentification!
-            String key = StringEscapeUtils.escapeHtml(name);
-            if (key.startsWith("input-")) {
-                key = key.replace("input-", "");
-            }
-	    log.debug("Parameter " + key + " is a value parameter.");
 	    
             // remove upload indentification!
             String key = StringEscapeUtils.escapeHtml(name);
             if (key.startsWith("input-")) {
                 key = key.replace("input-", "");
             }
+	    log.debug("Parameter " + key + " is a value parameter.");
 
             log.debug("Process parameter " + key + "...");
             if (key.equals(PARAM_JOB_NAME) || key.endsWith("-pattern")) {
