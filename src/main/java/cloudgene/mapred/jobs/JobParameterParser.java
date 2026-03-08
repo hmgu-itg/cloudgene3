@@ -153,6 +153,51 @@ public class JobParameterParser {
         return params;
     }
 
+    public static Map<String, String> parse0(List<FormUtil.Parameter> form)
+            throws Exception {
+        Map<String, String> props = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<String, String>();
+
+        // uploaded files
+
+        for (FormUtil.Parameter formParam : form) {
+            String name = formParam.getName();
+            Object value = formParam.getValue();
+            if (value instanceof File inputFile){
+		continue;
+	    }
+	    log.debug("Parameter " + key + " is a value parameter.");
+	    
+            // remove upload indentification!
+            String key = StringEscapeUtils.escapeHtml(name);
+            if (key.startsWith("input-")) {
+                key = key.replace("input-", "");
+            }
+
+            log.debug("Process parameter " + key + "...");
+            if (key.equals(PARAM_JOB_NAME) || key.endsWith("-pattern")) {
+                String cleanedValue = StringEscapeUtils.escapeHtml(value.toString());
+                props.put(key, cleanedValue);
+                log.debug("Parameter " + key + " ignored.");
+                continue;
+            }
+
+            WdlParameterInput input = getInputParamByName(app, key);
+            if (input == null) {
+                log.error("Parameter " + key + " not found in wdl application.");
+                throw new Exception("Parameter '" + key + "' not found.");
+            }
+
+	    String cleanedValue = StringEscapeUtils.escapeHtml(value.toString());
+
+	    if (!props.containsKey(key)) {
+		props.put(key, cleanedValue);
+	    }
+        }
+
+        return props;
+    }
+
     private static WdlParameterInput getInputParamByName(WdlApp app, String name) {
 
         for (WdlParameterInput input : app.getWorkflow().getInputs()) {

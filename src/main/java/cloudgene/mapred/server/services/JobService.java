@@ -82,7 +82,6 @@ public class JobService {
 	}
 
 	public AbstractJob submitJob(String appId, List<Parameter> form, User user, String userAgent) {
-
 		if (user == null) {
 			throw new JsonHttpStatusException(HttpStatus.UNAUTHORIZED, "Access denied.");
 		}
@@ -107,6 +106,13 @@ public class JobService {
 					"Application '" + appId + "' has no workflow section.");
 		}
 
+		Map<String,String> tmp_params=JobParameterParser.parse0(form);
+		log.debug("=== tmp_params ===");
+		for (String key:tmp_params.keySet()){
+		    log.debug(key+" : "+tmp_params.get(key));
+		}
+		log.debug("");
+	
 		String id = createId();
 
 		Map<String, String> inputParams = null;
