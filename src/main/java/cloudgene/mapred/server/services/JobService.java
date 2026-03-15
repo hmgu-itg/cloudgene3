@@ -42,6 +42,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.io.FileUtils;
 import java.util.stream.Collectors;
+import java.util.zip.GZIPInputStream;
+import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 @Singleton
 public class JobService {
@@ -224,6 +228,36 @@ public class JobService {
 	    return false;
 	}
 	return true;
+    }
+
+    private int getFileNsamples(String fname){
+	BufferedReader in = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(fname))));
+	String line;
+	int n=0;
+	while ((line=in.readLine()) != null){
+	    if(line.startsWith("#CHROM")){
+		String[] ar=line.split("\t");
+		return ar.length-9;
+	    }
+	}
+	return n;
+    }
+    
+    // for all *.vcf.gz files in dir, return map : fileName --> Nsamples
+    private HashMap<String,Integer> getDirNsamples(String dir){
+	HashMap <String,Integer> H=new HashMap <String,Integer>();
+	File D=new File(dir);
+	FileFilter fileFilter = new WildcardFileFilter("*.vcf.gz");
+	File flist [] = D.listFiles(fileFilter);
+	log.info("Found "+flist.length+" files matching *.vcf.gz");
+	for(File file : flist) {
+	    String fname=file.getName();
+	    int n=getFileNsamples(fname);
+	    log.info("File name: "+fname+", Nsamples="+n);
+	    H.put(fname,new Integer(n));
+	}
+	log.info("");
+	return H;
     }
     
     private boolean mergeFileParts(String dir){
