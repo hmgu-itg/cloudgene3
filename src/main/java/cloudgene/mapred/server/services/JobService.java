@@ -180,7 +180,7 @@ public class JobService {
 		    log.debug("files: "+inputParams.get("files"));
 		    log.debug("localWorkspace: "+localWorkspace);
 		    HashMap<String,Integer> nsamples=getDirNsamples(inputParams.get("files"));
-		    int n;
+		    int n=0;
 		    for (Map.Entry<String,Integer> entry : nsamples.entrySet()) {
 			String fname=entry.getKey();
 			n=entry.getValue();
