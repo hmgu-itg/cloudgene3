@@ -236,7 +236,7 @@ public class JobService {
 	return true;
     }
 
-    private int getFileNsamples(String fname){
+    private int getFileNsamples(String fname) throws FileNotFoundException,IOException{
 	BufferedReader in = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(fname))));
 	String line;
 	int n=0;
@@ -258,9 +258,17 @@ public class JobService {
 	log.info("Found "+flist.length+" files matching *.vcf.gz");
 	for(File file : flist) {
 	    String fname=file.getName();
-	    int n=getFileNsamples(fname);
-	    log.info("File name: "+fname+", Nsamples="+n);
-	    H.put(fname,new Integer(n));
+	    try{
+		int n=getFileNsamples(fname);
+		log.info("File name: "+fname+", Nsamples="+n);
+		H.put(fname,new Integer(n));
+	    }
+	    catch (FileNotFoundException ex){
+		log.error(ex.toString());
+	    }
+	    catch (IOException ex){
+		log.error(ex.toString());
+	    }
 	}
 	log.info("");
 	return H;
