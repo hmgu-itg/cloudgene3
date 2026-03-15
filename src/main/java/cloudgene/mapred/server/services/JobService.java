@@ -179,6 +179,12 @@ public class JobService {
 		    mergeFileParts(inputParams.get("files"));
 		    log.debug("files: "+inputParams.get("files"));
 		    log.debug("localWorkspace: "+localWorkspace);
+		    HashMap<String,Integer> nsamples=getDirNsamples(inputParams.get("files"));
+		    for (Map.Entry<String,Integer> entry : nsamples.entrySet()) {
+			String fname=entry.getKey();
+			int n=entry.getValue();
+			log.debug("File: "+fname+" : "+n+" samples");
+		    }
 		    CloudgeneJob job = new CloudgeneJob(user, id, app, inputParams);
 		    job.setId(id);
 		    job.setName(name);
