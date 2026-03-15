@@ -180,11 +180,13 @@ public class JobService {
 		    log.debug("files: "+inputParams.get("files"));
 		    log.debug("localWorkspace: "+localWorkspace);
 		    HashMap<String,Integer> nsamples=getDirNsamples(inputParams.get("files"));
+		    int n;
 		    for (Map.Entry<String,Integer> entry : nsamples.entrySet()) {
 			String fname=entry.getKey();
-			int n=entry.getValue();
+			n=entry.getValue();
 			log.debug("File: "+fname+" : "+n+" samples");
 		    }
+		    inputParams.put("nsamples",String.valueOf(n));
 		    CloudgeneJob job = new CloudgeneJob(user, id, app, inputParams);
 		    job.setId(id);
 		    job.setName(name);
