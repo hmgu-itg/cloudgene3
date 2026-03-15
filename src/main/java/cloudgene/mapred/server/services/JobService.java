@@ -251,6 +251,7 @@ public class JobService {
     
     // for all *.vcf.gz files in dir, return map : fileName --> Nsamples
     private HashMap<String,Integer> getDirNsamples(String dir){
+	log.debug("Dir name: "+dir);
 	HashMap <String,Integer> H=new HashMap <String,Integer>();
 	File D=new File(dir);
 	FileFilter fileFilter = new WildcardFileFilter("*.vcf.gz");
@@ -259,7 +260,7 @@ public class JobService {
 	for(File file : flist) {
 	    String fname=file.getName();
 	    try{
-		int n=getFileNsamples(fname);
+		int n=getFileNsamples(dir+"/"+fname);
 		log.info("File name: "+fname+", Nsamples="+n);
 		H.put(fname,new Integer(n));
 	    }
